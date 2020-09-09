@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS train_stationMS;
 CREATE DATABASE IF NOT EXISTS train_stationMS;
-USE TrainStationMS;
+USE train_stationMS;
 
 CREATE TABLE customer(
 customer_ID VARCHAR(10) PRIMARY KEY ,
@@ -86,7 +86,7 @@ FOREIGN KEY (customer_ID) REFERENCES customer(customer_ID)
 );
 
 CREATE TABLE booking_Details(
-booking_Details VARCHAR (10) PRIMARY KEY ,
+booking_Details_ID VARCHAR (10) PRIMARY KEY ,
 booking_ID VARCHAR (10),
 reserved_class VARCHAR (10),
 reserved_seat_count INT (10),
