@@ -35,7 +35,7 @@ public class Assistant_driverDAOImpl implements Assistant_driverDAO {
 
     @Override
     public assistant_driver search(String s) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM assistant_driver_ID WHERE assistant_driver_ID=?";
+        String sql = "SELECT * FROM assistant_driver WHERE assistant_driver_ID=?";
         return null;
     }
 
