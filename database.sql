@@ -42,7 +42,7 @@ duration int(11) NOT NULL
 CREATE TABLE train(
 engine_number VARCHAR(10) PRIMARY KEY,
 engine_type VARCHAR(10) NOT NULL,
-fuel_capasity int(10) NOT NULL,
+fuel_capacity int(10) NOT NULL,
 station_ID VARCHAR(10),
 FOREIGN KEY (station_ID) REFERENCES station(station_ID)
 );
@@ -77,12 +77,25 @@ FOREIGN KEY (assistant_driver_ID) REFERENCES assistant_driver(assistant_driver_I
 FOREIGN KEY (route_ID) REFERENCES route(route_ID)
 );
 
+CREATE TABLE ticket_prices(
+ticket_price_ID VARCHAR (10) PRIMARY KEY,
+station_ID VARCHAR(10),
+route_ID VARCHAR (10),
+1st_class_seat_price int(10),
+2st_class_seat_price int(10),
+3st_class_seat_price int(10),
+FOREIGN KEY (station_ID) REFERENCES station(station_ID),
+FOREIGN KEY (route_ID) REFERENCES route(route_ID)
+);
+
 CREATE TABLE booking(
 booking_ID VARCHAR (10) PRIMARY KEY ,
 schedule_ID VARCHAR (10) NOT NULL ,
 customer_ID VARCHAR (10) NOT NULL ,
+ticket_price_ID VARCHAR (10) NOT NULL,
 FOREIGN KEY (schedule_ID) REFERENCES schedule(schedule_ID),
-FOREIGN KEY (customer_ID) REFERENCES customer(customer_ID)
+FOREIGN KEY (customer_ID) REFERENCES customer(customer_ID),
+FOREIGN KEY (ticket_price_ID) REFERENCES ticket_prices(ticket_price_ID)
 );
 
 CREATE TABLE booking_Details(

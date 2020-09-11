@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class BookingDAOImpl implements BookingDAO {
     @Override
     public boolean add(booking booking) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO booking VALUES(?,?,?)";
+        String sql = "INSERT INTO booking VALUES(?,?,?,?)";
         return false;
     }
 
@@ -24,6 +24,7 @@ public class BookingDAOImpl implements BookingDAO {
         String sql = "UPDATE booking SET " +
                 "schedule_ID=?," +
                 "customer_ID=?," +
+                "ticket_price_ID=?," +
                 "WHERE booking_ID=?";
         return false;
     }

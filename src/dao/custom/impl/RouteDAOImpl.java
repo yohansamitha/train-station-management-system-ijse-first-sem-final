@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class RouteDAOImpl implements RouteDAO {
     @Override
     public boolean add(route route) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO route(?,?,?,?,?)";
+        String sql = "INSERT INTO route VALUES(?,?,?,?,?)";
         return false;
     }
 
