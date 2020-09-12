@@ -113,3 +113,9 @@ ticket_price DOUBLE (10,2) NOT NULL,
 paid_price DOUBLE (10,2) NOT NULL,
 payment_method VARCHAR (10) DEFAULT 'not paid'
 );
+
+CREATE TABLE users(
+-- user_ID int AUTO_INCREMENT PRIMARY KEY,
+user_name VARCHAR (50) PRIMARY KEY ,
+user_password VARCHAR (20) NOT NULL
+);
