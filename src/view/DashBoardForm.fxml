@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashBoardFormController">
@@ -18,7 +20,51 @@
                <children>
                   <AnchorPane prefHeight="717.0" prefWidth="198.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                      <children>
-                        <Pane layoutX="9.0" layoutY="12.0" prefHeight="50.0" prefWidth="178.0" />
+                        <Pane layoutX="11.0" layoutY="150.0" prefHeight="50.0" prefWidth="178.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="15.0" prefHeight="20.0" prefWidth="128.0" text="Manage schedules">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="11.0" layoutY="255.0" prefHeight="50.0" prefWidth="178.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="15.0" prefHeight="20.0" prefWidth="128.0" text="Manage Train">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="10.0" layoutY="359.0" prefHeight="50.0" prefWidth="178.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="15.0" prefHeight="20.0" prefWidth="128.0" text="Manage Empolyee">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="10.0" layoutY="480.0" prefHeight="50.0" prefWidth="178.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="15.0" prefHeight="20.0" prefWidth="128.0" text="Manage Routes">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="10.0" layoutY="577.0" prefHeight="50.0" prefWidth="178.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="15.0" prefHeight="20.0" prefWidth="128.0" text="Reports">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
                   </AnchorPane>
                </children>
