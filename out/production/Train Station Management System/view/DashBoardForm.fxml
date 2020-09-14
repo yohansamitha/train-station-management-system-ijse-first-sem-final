@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -19,7 +21,7 @@
                   <Insets />
                </HBox.margin>
                <children>
-                  <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+                  <AnchorPane prefHeight="717.0" prefWidth="198.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                      <children>
                         <Pane layoutX="11.0" layoutY="161.0" prefHeight="50.0" prefWidth="178.0" style="-fx-border-color: black;">
                            <children>
@@ -100,7 +102,28 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <AnchorPane fx:id="context" nodeOrientation="LEFT_TO_RIGHT" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS" />
+            <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="700.0" prefWidth="1002.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+               <children>
+                  <BorderPane prefHeight="700.0" prefWidth="1002.0">
+                     <top>
+                        <Label prefHeight="20.0" prefWidth="128.0" text="Manage Train" BorderPane.alignment="TOP_CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </top>
+                     <center>
+                        <AnchorPane style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
          </children>
       </HBox>
    </children>
