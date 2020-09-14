@@ -19,6 +19,7 @@ public class AppInitilizer extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"))));
+//        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("view/DashBoardForm.fxml"))));
         Image image = new Image("assets/titleIcon.png");
         primaryStage.getIcons().add(image);
         primaryStage.setTitle("Sri Lanka Railway Department");

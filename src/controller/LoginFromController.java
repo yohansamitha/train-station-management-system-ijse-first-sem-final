@@ -45,6 +45,7 @@ public class LoginFromController {
                 stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("../view/DashBoardForm.fxml"))));
                 stage.sizeToScene();
                 stage.centerOnScreen();
+                stage.setResizable(false);
                 stage.show();
 
 //                stage.close();

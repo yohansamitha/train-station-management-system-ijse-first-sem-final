@@ -25,7 +25,7 @@
          </Label>
          <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="70.0" layoutY="124.0" onAction="#txtUserNameOnAction" prefHeight="27.0" prefWidth="250.0" promptText="username/email" text="admin" />
          <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="70.0" layoutY="195.0" onAction="#txtPasswordOnAction" prefHeight="25.0" prefWidth="250.0" promptText="password" text="1234" />
-         <JFXButton layoutX="70.0" layoutY="282.0" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="250.0" text="Signin" />
+         <JFXButton layoutX="70.0" layoutY="282.0" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="250.0" text="Sign in" />
       </Pane>
    </children>
 </AnchorPane>
