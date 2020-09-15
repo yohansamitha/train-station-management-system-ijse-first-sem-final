@@ -33,6 +33,17 @@ reg_date DATE NOT NULL,
 position VARCHAR(15)
 );
 
+CREATE TABLE cashier(
+cashier_ID VARCHAR(10) PRIMARY KEY,
+first_name VARCHAR(60) NOT NULL,
+last_name VARCHAR(60) NOT NULL,
+DOB DATE,
+address VARCHAR(60) NOT NULL,
+email_address VARCHAR(50) DEFAULT 'Not added',
+reg_date DATE NOT NULL,
+position VARCHAR(15)
+);
+
 CREATE TABLE station(
 station_ID VARCHAR(10) PRIMARY KEY,
 station_name VARCHAR(60) NOT NULL,
