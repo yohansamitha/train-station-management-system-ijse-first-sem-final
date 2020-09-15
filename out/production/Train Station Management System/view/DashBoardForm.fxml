@@ -41,7 +41,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="355.0" onAction="#btnManageEmpolyee" prefHeight="49.0" prefWidth="178.0" text="Manage Empolyee">
+            <JFXButton alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="355.0" onAction="#banManageEmployee" prefHeight="49.0" prefWidth="178.0" text="Manage Empolyee">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

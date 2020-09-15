@@ -10,5 +10,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.ManageRoutesFormController"
             prefHeight="700.0" prefWidth="1000.0">
+    <children>
+        <Label layoutX="404.0" layoutY="280.0" text="Form 2" />
+    </children>
+
 
 </AnchorPane>
