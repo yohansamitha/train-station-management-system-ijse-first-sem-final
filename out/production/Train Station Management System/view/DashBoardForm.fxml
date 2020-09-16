@@ -13,9 +13,9 @@
    <children>
       <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="145.0" fitWidth="178.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="145.0" fitWidth="178.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
                <image>
-                  <Image url="@../assets/titleIcon.png" />
+                  <Image url="@../assets/WhatsApp%20Image%202020-09-14%20at%2010.28.39%20PM.png" />
                </image>
             </ImageView>
             <JFXButton alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="183.0" onAction="#btnManageSchedule" prefHeight="49.0" prefWidth="178.0" text="Manage schedules">
