@@ -10,18 +10,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageEmployeeFormController">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageEmployeeFormController">
    <children>
-      <TableView layoutX="217.0" layoutY="155.0" prefHeight="479.0" prefWidth="777.0">
+      <TableView layoutX="217.0" layoutY="155.0" prefHeight="479.0" prefWidth="877.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
           <TableColumn prefWidth="119.0" text="First Name" />
-          <TableColumn prefWidth="114.0" text="Last Name" />
+          <TableColumn prefWidth="118.0" text="Last Name" />
           <TableColumn prefWidth="92.0" text="Date of Birth" />
-          <TableColumn prefWidth="119.0" text="Address" />
-          <TableColumn prefWidth="103.0" text="Email Address" />
+          <TableColumn prefWidth="130.0" text="Address" />
+          <TableColumn prefWidth="117.0" text="Email Address" />
           <TableColumn prefWidth="83.0" text="Register Date" />
           <TableColumn prefWidth="71.0" text="Position" />
+          <TableColumn prefWidth="71.0" text=" " />
         </columns>
       </TableView>
       <Label layoutX="13.0" layoutY="37.0" text="Employee Registration">

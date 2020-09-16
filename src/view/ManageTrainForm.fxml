@@ -9,13 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageTrainFormController">
-    <TableView layoutX="217.0" layoutY="155.0" prefHeight="479.0" prefWidth="777.0">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageTrainFormController">
+    <TableView layoutX="228.0" layoutY="155.0" prefHeight="479.0" prefWidth="848.0">
         <columns>
             <TableColumn prefWidth="194.0" text="Engine Number" />
             <TableColumn prefWidth="194.0" text="Engine Type" />
             <TableColumn prefWidth="194.0" text="Fuel Capacity" />
             <TableColumn prefWidth="194.0" text="Station ID" />
+            <TableColumn prefWidth="71.0" text=" " />
         </columns>
     </TableView>
     <Label layoutX="13.0" layoutY="37.0" text="Train Registration">
