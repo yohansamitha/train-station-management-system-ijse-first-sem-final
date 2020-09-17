@@ -15,9 +15,8 @@
          <children>
             <ImageView fitHeight="145.0" fitWidth="178.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
                <image>
-                  <Image url="@../assets/WhatsApp%20Image%202020-09-14%20at%2010.28.39%20PM.png" />
-               </image>
-            </ImageView>
+                  <Image url="@../assets/dashBoardIcon.png" />
+               </image></ImageView>
             <JFXButton alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="183.0" onAction="#btnManageSchedule" prefHeight="49.0" prefWidth="178.0" text="Manage schedules">
                <graphic>
                   <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
