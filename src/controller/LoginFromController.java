@@ -4,6 +4,7 @@ import bo.BOFactory;
 import bo.custom.LoginBO;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.IOException;
@@ -41,6 +43,13 @@ public class LoginFromController {
             boolean isValidated = loginBO.getValidated(txtUserName.getText(), txtPassword.getText());
             System.out.println(isValidated);
             if (isValidated) {
+//                Stage stage = (Stage) root.getScene().getWindow();
+//                stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("../view/DashBoardForm.fxml"))));
+//                stage.sizeToScene();
+//                stage.centerOnScreen();
+//                stage.setResizable(false);
+//                stage.show();
+
                 Stage stage = (Stage) root.getScene().getWindow();
                 stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("../view/DashBoardForm.fxml"))));
                 stage.sizeToScene();
@@ -48,16 +57,7 @@ public class LoginFromController {
                 stage.setResizable(false);
                 stage.show();
 
-//                stage.close();
-//                Stage dashBoardScene = new Stage();
-//                dashBoardScene.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("../view/DashBoardForm.fxml"))));
-//                dashBoardScene.setTitle("Sri Lanka Railway Department");
-//                Image image = new Image("/assets/titleIcon.png");
-//                dashBoardScene.getIcons().add(image);
-//                dashBoardScene.show();
-//                root.getChildren().clear();
-//                root.resize(1000.0,600.0);
-//                boolean add = root.getChildren().add(FXMLLoader.load(this.getClass().getResource("../view/DashBoardForm.fxml")));
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Please check username and password");

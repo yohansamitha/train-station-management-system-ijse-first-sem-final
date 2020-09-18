@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -86,6 +87,13 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="context" layoutX="226.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" AnchorPane.rightAnchor="0.0" HBox.hgrow="ALWAYS" />
+      <AnchorPane fx:id="context" layoutX="226.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" AnchorPane.rightAnchor="0.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Label layoutX="496.0" layoutY="340.0" text="Kotuwa railways">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

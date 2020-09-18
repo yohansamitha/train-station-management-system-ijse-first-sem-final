@@ -44,10 +44,20 @@ reg_date DATE NOT NULL,
 position VARCHAR(15)
 );
 
+CREATE TABLE route(
+route_ID VARCHAR (10) PRIMARY KEY ,
+route_rank VARCHAR (10) NOT NULL,
+start VARCHAR (10) NOT NULL,
+destination VARCHAR (10) NOT NULL,
+estimated_time time NOT NULL
+);
+
 CREATE TABLE station(
 station_ID VARCHAR(10) PRIMARY KEY,
+route_ID VARCHAR (10) NOT NULL,
 station_name VARCHAR(60) NOT NULL,
-duration int(11) NOT NULL
+duration int(11) NOT NULL,
+FOREIGN KEY (route_ID) REFERENCES route(route_ID)
 );
 
 CREATE TABLE train(
@@ -64,14 +74,6 @@ engine_number VARCHAR(10),
 2st_clas_seat_count int(10),
 3st_clas_seat_count int(10),
 FOREIGN KEY (engine_number) REFERENCES Train(engine_number)
-);
-
-CREATE TABLE route(
-route_ID VARCHAR (10) PRIMARY KEY ,
-route_rank VARCHAR (10) NOT NULL,
-start VARCHAR (10) NOT NULL,
-destination VARCHAR (10) NOT NULL,
-estimated_time time NOT NULL
 );
 
 CREATE TABLE schedule(
