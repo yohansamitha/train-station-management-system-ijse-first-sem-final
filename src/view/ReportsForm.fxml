@@ -2,12 +2,10 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="controller.ReportsFormController"
-            prefHeight="700.0" prefWidth="1000.0">
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsFormController">
     <children>
-        <Label layoutX="404.0" layoutY="280.0" text="Report Form"/>
+        <Label layoutX="404.0" layoutY="280.0" text="Report Form" />
     </children>
 
 </AnchorPane>

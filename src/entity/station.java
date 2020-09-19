@@ -2,13 +2,33 @@ package entity;
 
 public class station {
     private String station_ID;
+    private String route_ID;
     private String station_name;
-    private int duration;
+    private int distance;
+    private String duration;
 
-    public station(String station_ID, String station_name, int duration) {
+    public station(String station_ID, String route_ID, String station_name, int distance, String duration) {
         this.station_ID = station_ID;
+        this.route_ID = route_ID;
         this.station_name = station_name;
+        this.distance = distance;
         this.duration = duration;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getRoute_ID() {
+        return route_ID;
+    }
+
+    public void setRoute_ID(String route_ID) {
+        this.route_ID = route_ID;
     }
 
     public String getStation_ID() {
@@ -27,11 +47,11 @@ public class station {
         this.station_name = station_name;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDistance() {
+        return distance;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 }

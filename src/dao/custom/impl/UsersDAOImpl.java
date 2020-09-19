@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class UsersDAOImpl implements UsersDAO {
     @Override
     public boolean add(Users users) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO users(user_name,user_password) VALUES(?,?)";
+        String sql = "INSERT INTO users(user_name,user_password,position) VALUES(?,?,?)";
         return false;
     }
 
@@ -32,6 +32,7 @@ public class UsersDAOImpl implements UsersDAO {
         ResultSet resultSet = CrudUtil.executeQuery(sql, code);
         return new Users(
                 resultSet.getString(2),
+                resultSet.getString(3),
                 resultSet.getString(3));
     }
 
@@ -42,9 +43,9 @@ public class UsersDAOImpl implements UsersDAO {
     }
 
     @Override
-    public boolean validate(String userName, String passWord) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM users WHERE user_name=? && user_password=?";
-        ResultSet resultSet = CrudUtil.executeQuery(sql, userName, passWord);
+    public boolean validate(Users users) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM users WHERE user_name=? && user_password=? && position=?";
+        ResultSet resultSet = CrudUtil.executeQuery(sql, users.getUser_name(), users.getUser_password(),users.getPosition());
         return resultSet.next();
     }
 }

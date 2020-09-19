@@ -56,7 +56,8 @@ CREATE TABLE station(
 station_ID VARCHAR(10) PRIMARY KEY,
 route_ID VARCHAR (10) NOT NULL,
 station_name VARCHAR(60) NOT NULL,
-duration int(11) NOT NULL,
+distance int(11) NOT NULL,
+duration VARCHAR (11) NOT NULL,
 FOREIGN KEY (route_ID) REFERENCES route(route_ID)
 );
 
@@ -130,5 +131,14 @@ payment_method VARCHAR (10) DEFAULT 'not paid'
 CREATE TABLE users(
 -- user_ID int AUTO_INCREMENT PRIMARY KEY,
 user_name VARCHAR (50) PRIMARY KEY ,
-user_password VARCHAR (20) NOT NULL
+user_password VARCHAR (20) NOT NULL,
+position VARCHAR (10) NOT NULL
 );
+
+INSERT INTO users(user_name,user_password,position) VALUES("admin","1234","admin");
+INSERT INTO users(user_name,user_password,position) VALUES("yohan","1234","admin");
+INSERT INTO users(user_name,user_password,position) VALUES("lochana","1234","employee");
+INSERT INTO users(user_name,user_password,position) VALUES("hashan","1234","employee");
+
+desc station;
+desc route;

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,15 +20,26 @@
             <Image url="@../assets/loginPic.png" />
          </image>
       </ImageView>
-      <Pane layoutX="50.0" layoutY="74.0" prefHeight="389.0" prefWidth="389.0" style="-fx-background-color: #dfe6e9;">
-         <Label alignment="CENTER" layoutX="145.0" layoutY="40.0" prefHeight="27.0" prefWidth="99.0" text="Sign In">
-            <font>
-               <Font name="System Bold" size="18.0" />
-            </font>
-         </Label>
-         <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="70.0" layoutY="124.0" onAction="#txtUserNameOnAction" prefHeight="27.0" prefWidth="250.0" promptText="username/email" text="admin" />
-         <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="70.0" layoutY="195.0" onAction="#txtPasswordOnAction" prefHeight="25.0" prefWidth="250.0" promptText="password" text="1234" />
-         <JFXButton layoutX="70.0" layoutY="282.0" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="250.0" text="Sign in" />
+      <Pane layoutX="50.0" layoutY="74.0" opacity="0.57" prefHeight="389.0" prefWidth="389.0" style="-fx-background-color: #dfe6e9; -fx-background-radius: 1em;" />
+      <Pane layoutX="51.0" layoutY="74.0" prefHeight="389.0" prefWidth="389.0" style="-fx-background-color: transparent; -fx-background-radius: 1em;">
+         <children>
+            <Label alignment="CENTER" layoutX="145.0" layoutY="61.0" prefHeight="27.0" prefWidth="99.0" text="Sign In">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="cblUserType" labelFloat="true" layoutX="70.0" layoutY="105.0" onAction="#cblUserTypeOnAction" prefHeight="25.0" prefWidth="250.0" promptText="Select UserType" unFocusColor="BLACK">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="admin" />
+                     <String fx:value="Employee" />
+                  </FXCollections>
+               </items>
+            </JFXComboBox>
+            <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="70.0" layoutY="168.0" onAction="#txtUserNameOnAction" prefHeight="27.0" prefWidth="250.0" promptText="username/email" text="admin" />
+            <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="70.0" layoutY="239.0" onAction="#txtPasswordOnAction" prefHeight="25.0" prefWidth="250.0" promptText="password" text="1234" />
+            <JFXButton layoutX="70.0" layoutY="303.0" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="250.0" text="Sign in" />
+         </children>
       </Pane>
    </children>
 </AnchorPane>
