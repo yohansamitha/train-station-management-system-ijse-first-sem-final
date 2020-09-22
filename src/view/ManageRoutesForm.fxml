@@ -14,7 +14,7 @@
     <children>
         <Separator layoutX="209.0" orientation="VERTICAL" prefHeight="700.0" />
       <JFXComboBox editable="true" labelFloat="true" layoutX="294.0" layoutY="77.0" prefHeight="25.0" prefWidth="333.0" promptText="Select A Route" />
-      <JFXButton fx:id="btnAddStation" layoutX="654.0" layoutY="77.0" prefHeight="25.0" prefWidth="85.0" text="Add Station" />
+      <JFXButton fx:id="btnAddStation" layoutX="654.0" layoutY="77.0" onAction="#btnAddStationOnAction" prefHeight="25.0" prefWidth="85.0" text="Add Station" />
       <Label layoutX="13.0" layoutY="37.0" text="Route Registration">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -45,7 +45,7 @@
       <JFXTextField fx:id="txtDestination" labelFloat="true" layoutX="10.0" layoutY="266.0" prefHeight="30.0" prefWidth="191.0" promptText="Destination" />
       <JFXTextField fx:id="txtEstimatedTime" labelFloat="true" layoutX="10.0" layoutY="320.0" prefHeight="30.0" prefWidth="191.0" promptText="Estimated Time" />
       <JFXButton fx:id="btnSave" layoutX="10.0" layoutY="573.0" onAction="#btnSaveOnAction" prefHeight="50.0" prefWidth="85.0" text="Save" />
-      <JFXButton fx:id="btnSave1" layoutX="116.0" layoutY="573.0" onAction="#btnSaveOnAction" prefHeight="50.0" prefWidth="85.0" text="Cancel" />
+      <JFXButton fx:id="btnCancel" layoutX="116.0" layoutY="573.0" onAction="#btnCancelOnAction" prefHeight="50.0" prefWidth="85.0" text="Cancel" />
       <Label fx:id="lblError1" alignment="TOP_LEFT" layoutX="8.0" layoutY="386.0" prefWidth="191.0" text="You Need to add at least one" textFill="#e74c3c" visible="false" />
       <Label fx:id="lblError2" alignment="TOP_LEFT" layoutX="8.0" layoutY="403.0" prefWidth="191.0" text="station to Proceed" textFill="#e74c3c" visible="false" />
     </children>

@@ -14,11 +14,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.SQLException;
 
 public class LoginFromController {
@@ -56,6 +63,7 @@ public class LoginFromController {
                 alert.showAndWait();
             } else {
                 if (loginBO.getValidated(new Users(txtUserName.getText(), txtPassword.getText(), cblUserType.getValue().toString()))) {
+                    System.out.println("true");
                     Stage stage = (Stage) root.getScene().getWindow();
 //                    Stage exitStage = (Stage) root.getScene().getWindow();
 //                    exitStage.close();

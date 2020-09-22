@@ -32,11 +32,11 @@
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="admin" />
-                     <String fx:value="Employee" />
+                     <String fx:value="cashier" />
                   </FXCollections>
                </items>
             </JFXComboBox>
-            <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="70.0" layoutY="168.0" onAction="#txtUserNameOnAction" prefHeight="27.0" prefWidth="250.0" promptText="username/email" text="admin" />
+            <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="70.0" layoutY="168.0" onAction="#txtUserNameOnAction" prefHeight="27.0" prefWidth="250.0" promptText="username/email" text="lochana" />
             <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="70.0" layoutY="239.0" onAction="#txtPasswordOnAction" prefHeight="25.0" prefWidth="250.0" promptText="password" text="1234" />
             <JFXButton layoutX="70.0" layoutY="303.0" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="250.0" text="Sign in" />
          </children>

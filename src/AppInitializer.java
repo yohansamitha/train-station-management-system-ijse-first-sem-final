@@ -1,23 +1,27 @@
 import animatefx.animation.*;
-import db.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-import javafx.util.Duration;
+import javafx.stage.WindowEvent;
 
-import java.awt.*;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.Optional;
 
 public class AppInitializer extends Application {
+    Parent root;
 
-//    private AnchorPane root;
+    public AppInitializer() {
+        try {
+            root = FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -26,17 +30,31 @@ public class AppInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 //        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"))));
-        Parent root = FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"));
-//        Scene scene = new Scene(root);
-//        primaryStage.setScene(scene);
+//        Parent root = FXMLLoader.load(this.getClass().getResource("view/ManageCustomerForm.fxml"));
         primaryStage.setScene(new Scene(root));
         Image image = new Image("assets/titleIcon.png");
         primaryStage.getIcons().add(image);
         primaryStage.setTitle("Sri Lanka Railway Department");
         primaryStage.sizeToScene();
+        primaryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
         primaryStage.show();
 //        new FadeInUpBig(root).play();
         new FadeIn(root).play();
 //        new ZoomInUp(root).play();
     }
+
+    private void closeWindowEvent(WindowEvent event) {
+        System.out.println("Window close request ...");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure you want to exit!");
+        Optional<ButtonType> res = alert.showAndWait();
+        if (res.isPresent()) {
+            if (res.get().equals(ButtonType.CANCEL)) {
+                event.consume();
+            }else {
+                new FadeOut(root).play();
+            }
+        }
+    }
 }
+

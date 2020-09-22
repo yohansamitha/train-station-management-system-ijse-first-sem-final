@@ -33,17 +33,6 @@ reg_date DATE NOT NULL,
 position VARCHAR(15)
 );
 
-CREATE TABLE cashier(
-cashier_ID VARCHAR(10) PRIMARY KEY,
-first_name VARCHAR(60) NOT NULL,
-last_name VARCHAR(60) NOT NULL,
-DOB DATE,
-address VARCHAR(60) NOT NULL,
-email_address VARCHAR(50) DEFAULT 'Not added',
-reg_date DATE NOT NULL,
-position VARCHAR(15)
-);
-
 CREATE TABLE route(
 route_ID VARCHAR (10) PRIMARY KEY ,
 route_rank VARCHAR (10) NOT NULL,
@@ -102,14 +91,36 @@ FOREIGN KEY (station_ID) REFERENCES station(station_ID),
 FOREIGN KEY (route_ID) REFERENCES route(route_ID)
 );
 
+CREATE TABLE users(
+user_ID int AUTO_INCREMENT PRIMARY KEY,
+user_name VARCHAR (50) NOT NULL ,
+user_password VARCHAR (20) NOT NULL,
+position VARCHAR (10) NOT NULL
+);
+
+CREATE TABLE cashier(
+cashier_ID VARCHAR(10) PRIMARY KEY,
+user_ID int Not NULL,
+first_name VARCHAR(60) NOT NULL,
+last_name VARCHAR(60) NOT NULL,
+DOB DATE,
+address VARCHAR(60) NOT NULL,
+email_address VARCHAR(50) DEFAULT 'Not added',
+reg_date DATE NOT NULL,
+position VARCHAR(15),
+FOREIGN KEY (user_ID) REFERENCES users(user_ID)
+);
+
 CREATE TABLE booking(
 booking_ID VARCHAR (10) PRIMARY KEY ,
 schedule_ID VARCHAR (10) NOT NULL ,
 customer_ID VARCHAR (10) NOT NULL ,
 ticket_price_ID VARCHAR (10) NOT NULL,
+cashier_ID VARCHAR(10) NOT NULL ,
 FOREIGN KEY (schedule_ID) REFERENCES schedule(schedule_ID),
 FOREIGN KEY (customer_ID) REFERENCES customer(customer_ID),
-FOREIGN KEY (ticket_price_ID) REFERENCES ticket_prices(ticket_price_ID)
+FOREIGN KEY (ticket_price_ID) REFERENCES ticket_prices(ticket_price_ID),
+FOREIGN KEY (cashier_ID) REFERENCES cashier(cashier_ID)
 );
 
 CREATE TABLE booking_Details(
@@ -128,17 +139,18 @@ paid_price DOUBLE (10,2) NOT NULL,
 payment_method VARCHAR (10) DEFAULT 'not paid'
 );
 
-CREATE TABLE users(
--- user_ID int AUTO_INCREMENT PRIMARY KEY,
-user_name VARCHAR (50) PRIMARY KEY ,
-user_password VARCHAR (20) NOT NULL,
-position VARCHAR (10) NOT NULL
-);
+
 
 INSERT INTO users(user_name,user_password,position) VALUES("admin","1234","admin");
 INSERT INTO users(user_name,user_password,position) VALUES("yohan","1234","admin");
-INSERT INTO users(user_name,user_password,position) VALUES("lochana","1234","employee");
-INSERT INTO users(user_name,user_password,position) VALUES("hashan","1234","employee");
+INSERT INTO users(user_name,user_password,position) VALUES("lochana","1234","cashier");
+INSERT INTO users(user_name,user_password,position) VALUES("hashan","1234","cashier");
 
 desc station;
 desc route;
+
+INSERT INTO cashier(cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
+("V001",3,"Lochana","mithudam","2020-09-16","no 25 panadura","lochanathiwanka@gmail.com","2020-09-16","cashier");
+
+INSERT INTO cashier(cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
+("V002",4,"hashan","saminda",'1992-06-10',"no 25 mathugama","hashansaminda@gmail.com",'2020-09-22',"cashier");
