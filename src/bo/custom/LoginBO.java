@@ -1,10 +1,11 @@
 package bo.custom;
 
 import bo.SuperBO;
+import dto.UsersDTO;
 import entity.Users;
 
 import java.sql.SQLException;
 
 public interface LoginBO extends SuperBO {
-    boolean getValidated(Users users) throws SQLException, ClassNotFoundException;
+    UsersDTO getValidated(String userName) throws SQLException, ClassNotFoundException;
 }

@@ -39,7 +39,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="294.0" layoutY="77.0" prefHeight="25.0" prefWidth="333.0" promptText="Search" />
+      <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="294.0" layoutY="77.0" prefHeight="25.0" prefWidth="333.0" promptText="Search" />
       <JFXButton fx:id="btnSearch" layoutX="654.0" layoutY="77.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="64.0" text="Search" />
       <JFXTextField fx:id="txtID" labelFloat="true" layoutX="10.0" layoutY="102.0" prefHeight="30.0" prefWidth="191.0" promptText="ID" />
       <JFXTextField fx:id="txtFirstName" labelFloat="true" layoutX="10.0" layoutY="158.0" prefHeight="30.0" prefWidth="191.0" promptText="First Name" />
@@ -48,7 +48,7 @@
       <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="10.0" layoutY="323.0" prefHeight="30.0" prefWidth="191.0" promptText="Address" />
       <JFXTextField fx:id="txtEmailAddress" labelFloat="true" layoutX="10.0" layoutY="380.0" prefHeight="30.0" prefWidth="191.0" promptText="Email Address" />
       <JFXTextField fx:id="txtRegisterDate" editable="false" labelFloat="true" layoutX="10.0" layoutY="437.0" prefHeight="30.0" prefWidth="191.0" promptText="Register Date" />
-      <JFXComboBox fx:id="cblPosition" labelFloat="true" layoutX="10.0" layoutY="493.0" prefHeight="30.0" prefWidth="191.0" promptText="Position">
+      <JFXComboBox fx:id="cblEmployeeRole" labelFloat="true" layoutX="10.0" layoutY="493.0" onAction="#cblEmployeeRoleOnAction" prefHeight="30.0" prefWidth="191.0" promptText="Employee Role">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Cashier" />

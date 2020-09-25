@@ -37,6 +37,7 @@ public class AppInitializer extends Application {
         primaryStage.setTitle("Sri Lanka Railway Department");
         primaryStage.sizeToScene();
         primaryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+        primaryStage.setResizable(false);
         primaryStage.show();
 //        new FadeInUpBig(root).play();
         new FadeIn(root).play();

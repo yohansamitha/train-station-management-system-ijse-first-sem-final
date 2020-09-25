@@ -8,7 +8,8 @@ first_name VARCHAR(60) NOT NULL,
 last_name VARCHAR(60) NOT NULL,
 DOB DATE,
 address VARCHAR(60) NOT NULL,
-email_address VARCHAR(50)
+email_address VARCHAR(50),
+status VARCHAR (10) DEFAULT 'active'
 );
 
 CREATE TABLE primary_driver(
@@ -19,7 +20,8 @@ DOB DATE,
 address VARCHAR(60) NOT NULL,
 email_address VARCHAR(50) DEFAULT 'Not added',
 reg_date DATE NOT NULL,
-position VARCHAR(15)
+position VARCHAR(15),
+status VARCHAR (10) DEFAULT 'active'
 );
 
 CREATE TABLE assistant_driver(
@@ -30,7 +32,8 @@ DOB DATE,
 address VARCHAR(60) NOT NULL,
 email_address VARCHAR(50) DEFAULT 'Not added',
 reg_date DATE NOT NULL,
-position VARCHAR(15)
+position VARCHAR(15),
+status VARCHAR (10) DEFAULT 'active'
 );
 
 CREATE TABLE route(
@@ -108,6 +111,7 @@ address VARCHAR(60) NOT NULL,
 email_address VARCHAR(50) DEFAULT 'Not added',
 reg_date DATE NOT NULL,
 position VARCHAR(15),
+status VARCHAR (10) DEFAULT 'active',
 FOREIGN KEY (user_ID) REFERENCES users(user_ID)
 );
 
@@ -150,7 +154,23 @@ desc station;
 desc route;
 
 INSERT INTO cashier(cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
-("V001",3,"Lochana","mithudam","2020-09-16","no 25 panadura","lochanathiwanka@gmail.com","2020-09-16","cashier");
+("E001",3,"Lochana","mithudam","2020-09-16","no 25 panadura","lochanathiwanka@gmail.com","2020-09-16","cashier");
 
 INSERT INTO cashier(cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
-("V002",4,"hashan","saminda",'1992-06-10',"no 25 mathugama","hashansaminda@gmail.com",'2020-09-22',"cashier");
+("E002",4,"hashan","saminda",'1992-06-10',"no 25 mathugama","hashansaminda@gmail.com",'2020-09-22',"cashier");
+
+INSERT INTO cashier(cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
+("E003",2,"yohan","samitha",'2000-12-25',"no 25 panadura","yohansamitha123@gmail.com",'2020-09-25',"admin");
+
+INSERT INTO assistant_driver(assistant_driver_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
+("A001","malindu","umesh",'1999-03-02',"no 69 polonnaruwa","malinduUmash123@gmail.com",'2020-09-25',"assistantDriver");
+
+INSERT INTO assistant_driver(assistant_driver_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
+("A002","gathsara","umesh",'2000-05-20',"no 69 rathnapura","gathsaraumesh123@gmail.com",'2020-09-25',"assistantDriver");
+
+INSERT INTO primary_driver(primary_driver_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
+("P001","udara","janith",'2000-01-09',"no 69 parana para","udaraJanith123@gmail.com",'2020-09-25',"primaryDriver");
+
+select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier union
+select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver union
+select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver;

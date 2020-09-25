@@ -1,5 +1,6 @@
 package dao;
 
+import dao.custom.impl.QueryDAOImpl;
 import dao.custom.impl.UsersDAOImpl;
 
 public class DAOFactory {
@@ -16,12 +17,14 @@ public class DAOFactory {
         switch (daoType) {
             case UserDAOImpl:
                 return new UsersDAOImpl();
+            case QueryDAOImpl:
+                return new QueryDAOImpl();
             default:
                 return null;
         }
     }
 
     public enum DAOType {
-        UserDAOImpl
+        UserDAOImpl,QueryDAOImpl
     }
 }

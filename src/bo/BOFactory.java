@@ -1,6 +1,7 @@
 package bo;
 
 import bo.custom.impl.LoginBOImpl;
+import bo.custom.impl.ManageEmployeeBOImpl;
 
 public class BOFactory {
     static BOFactory boFactory;
@@ -16,12 +17,14 @@ public class BOFactory {
         switch (boType) {
             case LoginBOImpl:
                 return new LoginBOImpl();
+            case ManageEmployeeBOImpl:
+                return new ManageEmployeeBOImpl();
             default:
                 return null;
         }
     }
 
     public enum BoType {
-        LoginBOImpl
+        LoginBOImpl, ManageEmployeeBOImpl
     }
 }

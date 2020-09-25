@@ -43,9 +43,12 @@ public class UsersDAOImpl implements UsersDAO {
     }
 
     @Override
-    public boolean validate(Users users) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM users WHERE user_name=? && user_password=? && position=?";
-        ResultSet resultSet = CrudUtil.executeQuery(sql, users.getUser_name(), users.getUser_password(),users.getPosition());
-        return resultSet.next();
+    public Users validate(String userName) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM users WHERE user_name=?";
+        ResultSet resultSet = CrudUtil.executeQuery(sql, userName);
+        if(resultSet.next()){
+            return new Users(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4));
+        }
+        return null;
     }
 }
