@@ -1,7 +1,6 @@
 package dao;
 
-import dao.custom.impl.QueryDAOImpl;
-import dao.custom.impl.UsersDAOImpl;
+import dao.custom.impl.*;
 
 public class DAOFactory {
     static DAOFactory daoFactory;
@@ -19,12 +18,18 @@ public class DAOFactory {
                 return new UsersDAOImpl();
             case QueryDAOImpl:
                 return new QueryDAOImpl();
+            case primary_driverDAOImpl:
+                return new Primary_driverDAOImpl();
+            case assistant_driverDAOImpl:
+                return new Assistant_driverDAOImpl();
+            case CashierDAOImpl:
+                return new CashierDAOImpl();
             default:
                 return null;
         }
     }
 
     public enum DAOType {
-        UserDAOImpl,QueryDAOImpl
+        UserDAOImpl,QueryDAOImpl,primary_driverDAOImpl,assistant_driverDAOImpl,CashierDAOImpl
     }
 }

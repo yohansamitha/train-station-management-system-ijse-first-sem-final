@@ -20,7 +20,7 @@ DOB DATE,
 address VARCHAR(60) NOT NULL,
 email_address VARCHAR(50) DEFAULT 'Not added',
 reg_date DATE NOT NULL,
-position VARCHAR(15),
+position VARCHAR(20),
 status VARCHAR (10) DEFAULT 'active'
 );
 
@@ -32,7 +32,7 @@ DOB DATE,
 address VARCHAR(60) NOT NULL,
 email_address VARCHAR(50) DEFAULT 'Not added',
 reg_date DATE NOT NULL,
-position VARCHAR(15),
+position VARCHAR(20),
 status VARCHAR (10) DEFAULT 'active'
 );
 
@@ -110,7 +110,7 @@ DOB DATE,
 address VARCHAR(60) NOT NULL,
 email_address VARCHAR(50) DEFAULT 'Not added',
 reg_date DATE NOT NULL,
-position VARCHAR(15),
+position VARCHAR(20),
 status VARCHAR (10) DEFAULT 'active',
 FOREIGN KEY (user_ID) REFERENCES users(user_ID)
 );
@@ -174,3 +174,11 @@ INSERT INTO primary_driver(primary_driver_ID, first_name, last_name, DOB, addres
 select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier union
 select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver union
 select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver;
+
+select * from member where memberID like '"+txtSearch.getText()+"%' or"
+                + " name like '"+txtSearch.getText()+"%' or "
+                + "address like '"+txtSearch.getText()+"%' or "
+                + "type like '"+txtSearch.getText()+"%' or "
+                + "contactNumber like '"+txtSearch.getText()+"%'
+
+select * from cashier where cashier_ID like '"+E002+"%' or first_name like '"hashan+"%'

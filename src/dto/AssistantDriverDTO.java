@@ -1,9 +1,7 @@
-package entity;
+package dto;
 
-import java.util.Date;
-
-public class primary_driver {
-    private String primary_driver_ID;
+public class AssistantDriverDTO {
+    private String assistant_driver_ID;
     private String first_name;
     private String last_name;
     private String DOB;
@@ -12,8 +10,8 @@ public class primary_driver {
     private String reg_date;
     private String position;
 
-    public primary_driver(String primary_driver_ID, String first_name, String last_name, String DOB, String address, String email_address, String reg_date, String position) {
-        this.primary_driver_ID = primary_driver_ID;
+    public AssistantDriverDTO(String assistant_driver_ID, String first_name, String last_name, String DOB, String address, String email_address, String reg_date, String position) {
+        this.assistant_driver_ID = assistant_driver_ID;
         this.first_name = first_name;
         this.last_name = last_name;
         this.DOB = DOB;
@@ -23,15 +21,12 @@ public class primary_driver {
         this.position = position;
     }
 
-    public primary_driver() {
+    public String getAssistant_driver_ID() {
+        return assistant_driver_ID;
     }
 
-    public String getPrimary_driver_ID() {
-        return primary_driver_ID;
-    }
-
-    public void setPrimary_driver_ID(String primary_driver_ID) {
-        this.primary_driver_ID = primary_driver_ID;
+    public void setAssistant_driver_ID(String assistant_driver_ID) {
+        this.assistant_driver_ID = assistant_driver_ID;
     }
 
     public String getFirst_name() {
