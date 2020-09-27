@@ -70,5 +70,15 @@ public class ManageEmployeeBOImpl implements ManageEmployeeBO {
         return primary_driverDAO.getRowCount();
     }
 
+    @Override
+    public boolean updatePrimaryDriver(primary_driverDTO primary_driverDTO) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean updateAssistantDriver(AssistantDriverDTO assistantDriverDTO) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
 
 }

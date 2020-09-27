@@ -182,3 +182,32 @@ select * from member where memberID like '"+txtSearch.getText()+"%' or"
                 + "contactNumber like '"+txtSearch.getText()+"%'
 
 select * from cashier where cashier_ID like '"+E002+"%' or first_name like '"hashan+"%'
+
+
+
+"select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier where cashier_ID like "E001" '%' or first_name like "lochana" '%' union select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver where primary_driver_ID like "P001" '%' or first_name like "dd" '%'";
+
+union " +
+"select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver where assistant_driver_ID like ? '%' or first_name like ? '%';"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

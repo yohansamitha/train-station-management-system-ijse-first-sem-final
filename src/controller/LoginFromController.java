@@ -99,10 +99,8 @@ public class LoginFromController {
             alert.setContentText("Please check username and password");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }

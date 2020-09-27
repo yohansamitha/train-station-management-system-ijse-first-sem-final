@@ -23,7 +23,7 @@ public class QueryDAOImpl implements QueryDAO {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getDate(4),
+                    resultSet.getString(4),
                     resultSet.getString(5),
                     resultSet.getString(6),
                     resultSet.getDate(7),

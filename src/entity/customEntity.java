@@ -1,20 +1,18 @@
 package entity;
 
-import javafx.scene.control.Button;
-
 import java.sql.Date;
 
 public class customEntity {
     private String ID;
     private String first_name;
     private String last_name;
-    private Date DOB;
+    private String DOB;
     private String address;
     private String email_address;
     private Date reg_date;
     private String position;
 
-    public customEntity(String ID, String first_name, String last_name, Date DOB, String address, String email_address, Date reg_date, String position) {
+    public customEntity(String ID, String first_name, String last_name, String DOB, String address, String email_address, Date reg_date, String position) {
         this.ID = ID;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -49,11 +47,11 @@ public class customEntity {
         this.last_name = last_name;
     }
 
-    public Date getDOB() {
+    public String getDOB() {
         return DOB;
     }
 
-    public void setDOB(Date DOB) {
+    public void setDOB(String DOB) {
         this.DOB = DOB;
     }
 

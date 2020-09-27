@@ -20,4 +20,8 @@ public interface ManageEmployeeBO extends SuperBO {
     int getAssistantDriverRowCount() throws SQLException, ClassNotFoundException;
 
     int getPrimaryDriverRowCount() throws SQLException, ClassNotFoundException;
+
+    boolean updatePrimaryDriver(primary_driverDTO primary_driverDTO) throws SQLException, ClassNotFoundException;
+
+    boolean updateAssistantDriver(AssistantDriverDTO assistantDriverDTO) throws SQLException, ClassNotFoundException;
 }
