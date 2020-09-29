@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class customEntity {
     private String ID;
@@ -12,6 +13,26 @@ public class customEntity {
     private Date reg_date;
     private String position;
 
+    private String schedule_ID;
+    private String engine_number;
+    private String engine_name;
+    private String primary_driver_ID;
+    private String assistant_driver_ID;
+    private String route_ID;
+    private Date   date;
+    private Time   time;
+
+    public customEntity(String schedule_ID, String engine_number, String engine_name, String primary_driver_ID, String assistant_driver_ID, String route_ID, Date date, Time time) {
+        this.schedule_ID = schedule_ID;
+        this.engine_number = engine_number;
+        this.engine_name = engine_name;
+        this.primary_driver_ID = primary_driver_ID;
+        this.assistant_driver_ID = assistant_driver_ID;
+        this.route_ID = route_ID;
+        this.date = date;
+        this.time = time;
+    }
+
     public customEntity(String ID, String first_name, String last_name, String DOB, String address, String email_address, Date reg_date, String position) {
         this.ID = ID;
         this.first_name = first_name;
@@ -21,6 +42,70 @@ public class customEntity {
         this.email_address = email_address;
         this.reg_date = reg_date;
         this.position = position;
+    }
+
+    public String getSchedule_ID() {
+        return schedule_ID;
+    }
+
+    public void setSchedule_ID(String schedule_ID) {
+        this.schedule_ID = schedule_ID;
+    }
+
+    public String getEngine_number() {
+        return engine_number;
+    }
+
+    public void setEngine_number(String engine_number) {
+        this.engine_number = engine_number;
+    }
+
+    public String getEngine_name() {
+        return engine_name;
+    }
+
+    public void setEngine_name(String engine_name) {
+        this.engine_name = engine_name;
+    }
+
+    public String getPrimary_driver_ID() {
+        return primary_driver_ID;
+    }
+
+    public void setPrimary_driver_ID(String primary_driver_ID) {
+        this.primary_driver_ID = primary_driver_ID;
+    }
+
+    public String getAssistant_driver_ID() {
+        return assistant_driver_ID;
+    }
+
+    public void setAssistant_driver_ID(String assistant_driver_ID) {
+        this.assistant_driver_ID = assistant_driver_ID;
+    }
+
+    public String getRoute_ID() {
+        return route_ID;
+    }
+
+    public void setRoute_ID(String route_ID) {
+        this.route_ID = route_ID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public String getID() {

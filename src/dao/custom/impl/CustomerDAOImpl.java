@@ -1,8 +1,10 @@
 package dao.custom.impl;
 
+import dao.CrudUtil;
 import dao.custom.CustomerDAO;
 import entity.customer;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -41,5 +43,16 @@ public class CustomerDAOImpl implements CustomerDAO {
     public ArrayList<customer> getAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer";
         return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllCustomerID() throws SQLException, ClassNotFoundException {
+        String sql="SELECT customer_ID FROM customer";
+        ArrayList<String> allCustomerID = new ArrayList<>();
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        while (resultSet.next()){
+            allCustomerID.add(resultSet.getString(1));
+        }
+        return allCustomerID;
     }
 }

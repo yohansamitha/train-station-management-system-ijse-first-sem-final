@@ -24,12 +24,22 @@ public class DAOFactory {
                 return new Assistant_driverDAOImpl();
             case CashierDAOImpl:
                 return new CashierDAOImpl();
+            case CustomerDAOImpl:
+                return new CustomerDAOImpl();
+            case StationDAOImpl:
+                return new StationDAOImpl();
             default:
                 return null;
         }
     }
 
     public enum DAOType {
-        UserDAOImpl,QueryDAOImpl,primary_driverDAOImpl,assistant_driverDAOImpl,CashierDAOImpl
+        UserDAOImpl,
+        QueryDAOImpl,
+        primary_driverDAOImpl,
+        assistant_driverDAOImpl,
+        CashierDAOImpl,
+        CustomerDAOImpl,
+        StationDAOImpl,
     }
 }

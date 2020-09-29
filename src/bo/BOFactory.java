@@ -1,5 +1,6 @@
 package bo;
 
+import bo.custom.impl.FindTripBOImpl;
 import bo.custom.impl.LoginBOImpl;
 import bo.custom.impl.ManageEmployeeBOImpl;
 
@@ -19,12 +20,14 @@ public class BOFactory {
                 return new LoginBOImpl();
             case ManageEmployeeBOImpl:
                 return new ManageEmployeeBOImpl();
+            case FindTripBOImpl:
+                return new FindTripBOImpl();
             default:
                 return null;
         }
     }
 
     public enum BoType {
-        LoginBOImpl, ManageEmployeeBOImpl
+        LoginBOImpl, ManageEmployeeBOImpl,FindTripBOImpl
     }
 }

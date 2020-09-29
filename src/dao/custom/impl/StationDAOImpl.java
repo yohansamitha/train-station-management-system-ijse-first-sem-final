@@ -1,8 +1,10 @@
 package dao.custom.impl;
 
+import dao.CrudUtil;
 import dao.custom.StationDAO;
 import entity.station;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -37,6 +39,17 @@ public class StationDAOImpl implements StationDAO {
     @Override
     public ArrayList<station> getAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM station";
-        return null;
+        ArrayList<station> stations = new ArrayList<>();
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        while (resultSet.next()){
+            stations.add(new station(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getInt(4),
+                    resultSet.getString(5)
+                    ));
+        }
+        return stations;
     }
 }

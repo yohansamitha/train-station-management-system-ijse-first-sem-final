@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -15,13 +16,13 @@
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FindTripFormController">
    <children>
       <Separator layoutX="209.0" orientation="VERTICAL" prefHeight="700.0" />
-      <JFXDatePicker fx:id="DtpTrip" layoutX="10.0" layoutY="155.0" prefHeight="30.0" prefWidth="191.0" promptText="Enter Your Date" />
+      <JFXDatePicker fx:id="DtpTrip" layoutX="10.0" layoutY="263.0" prefHeight="30.0" prefWidth="191.0" promptText="Enter Your Date" />
       <Label layoutX="14.0" layoutY="14.0" text="Find Trip">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TableView layoutX="238.0" layoutY="43.0" prefHeight="200.0" prefWidth="845.0">
+      <TableView fx:id="tblSchedule" layoutX="238.0" layoutY="43.0" prefHeight="200.0" prefWidth="845.0">
         <columns>
           <TableColumn fx:id="clmScheduleID" prefWidth="100.0" text="Schedule ID" />
           <TableColumn fx:id="clmEngineNumber" prefWidth="113.0" text="Engine Number" />
@@ -43,21 +44,22 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXComboBox editable="true" labelFloat="true" layoutX="10.0" layoutY="101.0" prefHeight="30.0" prefWidth="191.0" promptText="Search Customer ID or Name" />
-      <JFXComboBox editable="true" labelFloat="true" layoutX="238.0" layoutY="256.0" prefWidth="191.0" promptText="Select Your Route" />
-      <TableView layoutX="238.0" layoutY="288.0" prefHeight="224.0" prefWidth="400.0">
+      <JFXComboBox fx:id="txtCustomerSearch" editable="true" labelFloat="true" layoutX="10.0" layoutY="101.0" onAction="#txtCustomerSearchOnAction" prefHeight="30.0" prefWidth="191.0" promptText="Search Customer ID or Name" />
+      <JFXComboBox fx:id="cblRouteFilter" editable="true" labelFloat="true" layoutX="238.0" layoutY="256.0" onAction="#cblRouteFilterOnAction" prefWidth="191.0" promptText="Select Your Route" />
+      <TableView fx:id="tblStation" layoutX="238.0" layoutY="288.0" prefHeight="224.0" prefWidth="400.0">
         <columns>
           <TableColumn fx:id="clmStationID" prefWidth="75.0" text="StationID" />
-          <TableColumn fx:id="clmRouteId" prefWidth="75.0" text="RouteID" />
-          <TableColumn fx:id="clmStationName" prefWidth="100.0" text="Station Name" />
-          <TableColumn fx:id="clmDistance" prefWidth="75.0" text="Distance" />
+          <TableColumn fx:id="clmRouteId" prefWidth="65.0" text="RouteID" />
+          <TableColumn fx:id="clmStationName" prefWidth="118.0" text="Station Name" />
+          <TableColumn fx:id="clmDistance" prefWidth="65.0" text="Distance" />
           <TableColumn fx:id="clmDuration" prefWidth="75.0" text="Duration" />
         </columns>
       </TableView>
-      <JFXTextField labelFloat="true" layoutX="10.0" layoutY="209.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Your Station" />
-      <JFXTextField labelFloat="true" layoutX="446.0" layoutY="256.0" prefWidth="191.0" promptText="Station Search" />
-      <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="309.0" prefHeight="45.0" prefWidth="191.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Place Booking" />
-      <TableView layoutX="671.0" layoutY="288.0" prefHeight="87.0" prefWidth="382.0">
+      <JFXTextField fx:id="txtStationSearch" labelFloat="true" layoutX="10.0" layoutY="317.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Your Station" />
+      <JFXTextField fx:id="txtStationTableSearch" labelFloat="true" layoutX="446.0" layoutY="256.0" prefWidth="191.0" promptText="Station Search" />
+      <JFXButton fx:id="btnPlaceBooking" buttonType="RAISED" layoutX="661.0" layoutY="608.0" onAction="#btnPlaceBookingOnAction" prefHeight="45.0" prefWidth="191.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Place Booking" />
+      <JFXButton fx:id="btnCancel" buttonType="RAISED" layoutX="889.0" layoutY="608.0" onAction="#btnCancelOnAction" prefHeight="45.0" prefWidth="191.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Cancel" />
+      <TableView fx:id="tblTicketPrice" layoutX="671.0" layoutY="288.0" prefHeight="87.0" prefWidth="382.0">
         <columns>
           <TableColumn fx:id="clmRouteid" prefWidth="75.0" text="Route ID" />
           <TableColumn fx:id="clmStaID" prefWidth="81.0" text="Station ID" />
@@ -71,20 +73,31 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Spinner fx:id="spn1Class" editable="true" layoutX="671.0" layoutY="485.0" prefHeight="25.0" prefWidth="99.0" />
-      <Spinner fx:id="spn2Class" editable="true" layoutX="810.0" layoutY="485.0" prefHeight="25.0" prefWidth="99.0" />
-      <Spinner fx:id="spn3Class" editable="true" layoutX="954.0" layoutY="485.0" prefHeight="25.0" prefWidth="99.0" />
-      <Label layoutX="671.0" layoutY="440.0" text="Please Select your seat count">
-      <Label layoutX="671.0" layoutY="463.0" text="1st Class" />
-      <Label layoutX="810.0" layoutY="463.0" text="2st Class" />
-      <Label layoutX="954.0" layoutY="463.0" text="3st Class" />
+      <Spinner fx:id="spn1Class" editable="true" layoutX="671.0" layoutY="470.0" prefHeight="25.0" prefWidth="99.0" />
+      <Spinner fx:id="spn2Class" editable="true" layoutX="810.0" layoutY="470.0" prefHeight="25.0" prefWidth="99.0" />
+      <Spinner fx:id="spn3Class" editable="true" layoutX="954.0" layoutY="470.0" prefHeight="25.0" prefWidth="99.0" />
+      <Label layoutX="671.0" layoutY="425.0" text="Please Select your seat count">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="727.0" layoutY="384.0" text="Remaining seats" />
+         </font></Label>
+      <Label layoutX="671.0" layoutY="448.0" text="1st Class" />
+      <Label layoutX="810.0" layoutY="448.0" text="2st Class" />
+      <Label layoutX="954.0" layoutY="448.0" text="3st Class" />
+
+
+       <Label layoutX="727.0" layoutY="384.0" text="Remaining seats" />
       <JFXTextField fx:id="txt1ClassSeatCount" editable="false" layoutX="832.0" layoutY="380.0" prefHeight="10.0" prefWidth="65.0" />
       <JFXTextField fx:id="txt2ClassSeatCount" editable="false" layoutX="909.0" layoutY="380.0" prefHeight="10.0" prefWidth="65.0" />
       <JFXTextField fx:id="txt3ClassSeatCount" editable="false" layoutX="984.0" layoutY="380.0" prefHeight="10.0" prefWidth="65.0" />
+      <Label layoutX="773.0" layoutY="523.0" prefHeight="27.0" text="Total : " textFill="#d71f12">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtTotal" editable="false" layoutX="833.0" layoutY="523.0" prefHeight="10.0" prefWidth="65.0" />
+      <JFXRadioButton fx:id="rdbCard" layoutX="998.0" layoutY="527.0" onAction="#rdbCardOnAction" text="Card" />
+      <JFXRadioButton fx:id="rdbCash" layoutX="925.0" layoutY="528.0" onAction="#rdbCashOnAction" selected="true" text="Cash" />
+      <JFXTextField editable="false" labelFloat="true" layoutX="10.0" layoutY="155.0" prefHeight="30.0" prefWidth="191.0" promptText="Customer Name" />
+      <JFXTextField editable="false" labelFloat="true" layoutX="10.0" layoutY="209.0" prefHeight="30.0" prefWidth="191.0" promptText="Customer Address" />
    </children>
 </AnchorPane>

@@ -172,6 +172,36 @@ INSERT INTO assistant_driver(assistant_driver_ID, first_name, last_name, DOB, ad
 INSERT INTO primary_driver(primary_driver_ID, first_name, last_name, DOB, address, email_address, reg_date, position) VALUES
 ("P001","udara","janith",'2000-01-09',"no 69 parana para","udaraJanith123@gmail.com",'2020-09-25',"primaryDriver");
 
+INSERT INTO customer(customer_ID, first_name, last_name, DOB, address, email_address) VALUES
+("C001","mallika","perera",'2000-01-11',"no 20 yapanaya","mallika@gmail.com"),
+("C002","hemanthi","silva",'2000-02-12',"no 20 nalluruwa","hemanthi@gmail.com"),
+("C003","awanthi","shashikala",'2000-03-13',"no 20 ambalangoda","awanthi@gmail.com"),
+("C004","udara","janith",'2000-04-14',"no 20 paraththa","udara@gmail.com"),
+("C005","siripala","punsuri",'2000-05-15',"no 20 thunpane","siripala@gmail.com"),
+("C006","nittawa","aefeae",'2000-06-16',"no 20 mulathiw","nittawa@gmail.com"),
+("C007","lochana","thiwanka",'2000-07-17',"no 20 nalluruwa","lochana@gmail.com"),
+("C008","thilina","dilshan",'2000-08-18',"no 20 halawatha","thilina@gmail.com");
+
+INSERT INTO route(route_ID, route_rank, start, destination, estimated_time) VALUES
+("R001","1","petta","badulla","19:30:10");
+
+INSERT INTO station(station_ID, route_ID, station_name, distance, duration) VALUES
+("S001","R001","moratuwa station",10,"01:00:00"),
+("S002","R001","rawathawatta station",20,"02:00:00"),
+("S003","R001","galkissa station",30,"03:00:00"),
+("S004","R001","pothupiitiya station",40,"04:00:00"),
+("S005","R001","rathmalana station",50,"05:00:00"),
+("S006","R001","galla station",60,"06:00:00");
+
+INSERT INTO train(engine_number, train_name, engine_type, fuel_capacity, station_ID) VALUES
+("Eng1020","mallika","Express",100,"S002");
+
+INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count) VALUES
+("Eng1020",30,40,50);
+
+INSERT INTO ticket_prices(ticket_price_ID, station_ID, route_ID, 1st_class_seat_price, 2st_class_seat_price, 3st_class_seat_price) VALUES
+("T001","S001","R001",100,80,60);
+
 select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier union
 select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver union
 select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver;
@@ -181,7 +211,14 @@ select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_da
 --                 + "address like '"+txtSearch.getText()+"%' or "
 --                 + "type like '"+txtSearch.getText()+"%' or "
 --                 + "contactNumber like '"+txtSearch.getText()+"%'
-
+btn.setOnMouseEntered(e -> {
+            btn.setEffect(new Bloom(0));
+            btn.setStyle("-fx-border-color: #ffffff;");
+        });
+        btn.setOnMouseExited(e -> {
+            btn.setEffect(new Bloom(1));
+            btn.setStyle("-fx-background-color: transparent;");
+        });
 -- working
 -- select * from cashier where cashier_ID like '"+E002+"%' or first_name like '"hashan+"%'
 
