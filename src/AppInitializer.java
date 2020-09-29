@@ -18,7 +18,7 @@ public class AppInitializer extends Application {
     public AppInitializer() {
         try {
 //            root = FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"));
-            root = FXMLLoader.load(this.getClass().getResource("view/ManageEmployeeForm.fxml"));
+            root = FXMLLoader.load(this.getClass().getResource("view/FindTripForm.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

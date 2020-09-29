@@ -9,29 +9,21 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import dto.AssistantDriverDTO;
+import dto.cashierDTO;
 import dto.primary_driverDTO;
 import entity.customEntity;
-import entity.primary_driver;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,10 +36,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Optional;
 import java.util.ResourceBundle;
-
-import static java.awt.Color.black;
 
 public class ManageEmployeeFormController implements Initializable {
     public JFXButton btnSave;
@@ -73,7 +62,9 @@ public class ManageEmployeeFormController implements Initializable {
     public JFXComboBox cblEmployeeRole;
     public JFXButton btnCancel;
     public Label lblHint;
+    public JFXButton btnDeleteEmp;
     ManageEmployeeBO manageEmployeeBO = (ManageEmployeeBO) BOFactory.getInstance().getBO(BOFactory.BoType.ManageEmployeeBOImpl);
+    private boolean cashierUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -114,12 +105,24 @@ public class ManageEmployeeFormController implements Initializable {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CreateUserForm.fxml"));
                         Parent parent = fxmlLoader.load();
                         CreateUserFormController createUserFormController = fxmlLoader.getController();
-                        createUserFormController.setUserID(txtID.getText());
+                        createUserFormController.setCashierDetails(new cashierDTO(
+                                txtID.getText(),
+                                txtFirstName.getText(),
+                                txtLastName.getText(),
+                                dtpDOB.getValue(),
+                                txtAddress.getText(),
+                                txtEmailAddress.getText(),
+                                txtRegisterDate.getText(),
+                                cblEmployeeRole.getValue().toString())
+                        );
                         Stage stage = new Stage();
                         Scene scene = new Scene(parent);
                         stage.setScene(scene);
                         stage.centerOnScreen();
                         stage.show();
+                        System.out.println("1");
+                        loadAllEmployee();
+//                        boolean isCashierAdded = cashierAdd(false);
                         break;
                     case "Primary Driver":
                         try {
@@ -178,7 +181,15 @@ public class ManageEmployeeFormController implements Initializable {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CreateUserForm.fxml"));
                         Parent parent = fxmlLoader.load();
                         CreateUserFormController createUserFormController = fxmlLoader.getController();
-                        createUserFormController.setUserID(txtID.getText());
+                        createUserFormController.setCashierDetails(new cashierDTO(
+                                txtID.getText(),
+                                txtFirstName.getText(),
+                                txtLastName.getText(),
+                                dtpDOB.getValue(),
+                                txtAddress.getText(),
+                                txtEmailAddress.getText(),
+                                txtRegisterDate.getText(),
+                                cblEmployeeRole.getValue().toString()));
                         Stage stage = new Stage();
                         Scene scene = new Scene(parent);
                         stage.setScene(scene);
@@ -398,11 +409,6 @@ public class ManageEmployeeFormController implements Initializable {
         }
     }
 
-    public void tblEmployeeOnAction(SortEvent<TableView> tableViewSortEvent) {
-        System.out.println("method testing");
-        System.out.println(tblEmployee.getSelectionModel().getSelectedItem().toString());
-    }
-
     public void tblEmployeeSelection(MouseEvent mouseEvent) {
         customEntity s = (customEntity) tblEmployee.getSelectionModel().getSelectedItem();
         System.out.println(s.toString());
@@ -416,5 +422,9 @@ public class ManageEmployeeFormController implements Initializable {
         cblEmployeeRole.setValue(s.getPosition());
         lblHint.requestFocus();
         btnSave.setText("Update");
+    }
+
+    public void btnDeleteEmpOnAction(ActionEvent actionEvent) {
+
     }
 }

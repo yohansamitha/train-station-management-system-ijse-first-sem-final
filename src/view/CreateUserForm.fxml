@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,8 +12,6 @@
       <JFXButton fx:id="btnLogin" layoutX="258.0" layoutY="256.0" onAction="#btnLoginOnAction" prefHeight="29.0" prefWidth="64.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Login" />
       <JFXButton fx:id="btnCancel" layoutX="343.0" layoutY="256.0" onAction="#btnCancelOnAction" prefHeight="29.0" prefWidth="64.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Cancel" />
       <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="60.0" layoutY="86.0" prefHeight="30.0" prefWidth="325.0" promptText="Enter Your username or Email Address" />
-      <JFXTextField fx:id="txtPassWord" labelFloat="true" layoutX="60.0" layoutY="137.0" prefHeight="30.0" prefWidth="325.0" promptText="Enter Your New Password" />
-      <JFXTextField fx:id="txtPassWordReEnter" labelFloat="true" layoutX="60.0" layoutY="191.0" prefHeight="30.0" prefWidth="325.0" promptText="ReEnter Your Password" />
       <Label layoutX="103.0" layoutY="14.0" text="Please Enter youor Cashier Details">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -20,5 +19,7 @@
       </Label>
       <Label layoutX="14.0" layoutY="48.0" text="Cashier ID " />
       <Label fx:id="txtCashierID" layoutX="89.0" layoutY="48.0" prefWidth="80.0" />
+      <JFXPasswordField fx:id="txtPassWord" labelFloat="true" layoutX="60.0" layoutY="137.0" onAction="#txtPassWordOnAction" prefHeight="30.0" prefWidth="325.0" promptText="Enter Your New Password" />
+      <JFXPasswordField fx:id="txtPassWordReEnter" labelFloat="true" layoutX="60.0" layoutY="191.0" onAction="#txtPassWordReEnterOnAction" prefHeight="30.0" prefWidth="325.0" promptText="ReEnter Your Password" />
    </children>
 </AnchorPane>

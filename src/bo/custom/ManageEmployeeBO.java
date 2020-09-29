@@ -2,6 +2,8 @@ package bo.custom;
 
 import bo.SuperBO;
 import dto.AssistantDriverDTO;
+import dto.UsersDTO;
+import dto.cashierDTO;
 import dto.primary_driverDTO;
 import entity.customEntity;
 
@@ -17,6 +19,8 @@ public interface ManageEmployeeBO extends SuperBO {
 
     int getCashierRowCount() throws SQLException, ClassNotFoundException;
 
+    int getUserRowCount() throws SQLException, ClassNotFoundException;
+
     int getAssistantDriverRowCount() throws SQLException, ClassNotFoundException;
 
     int getPrimaryDriverRowCount() throws SQLException, ClassNotFoundException;
@@ -24,4 +28,6 @@ public interface ManageEmployeeBO extends SuperBO {
     boolean updatePrimaryDriver(primary_driverDTO primary_driverDTO) throws SQLException, ClassNotFoundException;
 
     boolean updateAssistantDriver(AssistantDriverDTO assistantDriverDTO) throws SQLException, ClassNotFoundException;
+
+    boolean addCashier(cashierDTO cashierDTO, UsersDTO cashier) throws SQLException,ClassNotFoundException;
 }

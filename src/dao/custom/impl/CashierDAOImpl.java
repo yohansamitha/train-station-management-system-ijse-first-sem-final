@@ -11,9 +11,19 @@ import java.util.ArrayList;
 public class CashierDAOImpl implements CashierDAO {
     @Override
     public boolean add(cashier cashier) throws SQLException, ClassNotFoundException {
-        String sql ="INSERT INTO cashier (cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position)" +
+        String sql = "INSERT INTO cashier (cashier_ID, user_ID, first_name, last_name, DOB, address, email_address, reg_date, position)" +
                 "VALUES(?,?,?,?,?,?,?,?,?)";
-        return false;
+        return CrudUtil.executeUpdate(sql,
+                cashier.getCashier_ID(),
+                cashier.getUser_ID(),
+                cashier.getFirst_name(),
+                cashier.getLast_name(),
+                cashier.getDOB(),
+                cashier.getAddress(),
+                cashier.getEmail_address(),
+                cashier.getReg_date(),
+                cashier.getPosition()
+        );
     }
 
     @Override
@@ -38,9 +48,9 @@ public class CashierDAOImpl implements CashierDAO {
 
     @Override
     public int getRowCount() throws SQLException, ClassNotFoundException {
-        String sql="SELECT COUNT(cashier_ID) FROM cashier";
+        String sql = "SELECT COUNT(cashier_ID) FROM cashier";
         ResultSet resultSet = CrudUtil.executeQuery(sql);
-        if (resultSet.next()){
+        if (resultSet.next()) {
             return resultSet.getInt(1);
         }
         return -1;

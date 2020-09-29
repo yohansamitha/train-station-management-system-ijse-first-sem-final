@@ -1,19 +1,20 @@
 package entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class cashier {
     private String cashier_ID;
-    private String user_ID;
+    private int user_ID;
     private String first_name;
     private String last_name;
-    private Date DOB;
+    private LocalDate DOB;
     private String address;
     private String email_address;
-    private Date reg_date;
+    private String reg_date;
     private String position;
 
-    public cashier(String cashier_ID, String user_ID, String first_name, String last_name, Date DOB, String address, String email_address, Date reg_date, String position) {
+    public cashier(String cashier_ID, int user_ID, String first_name, String last_name, LocalDate DOB, String address, String email_address, String reg_date, String position) {
         this.cashier_ID = cashier_ID;
         this.user_ID = user_ID;
         this.first_name = first_name;
@@ -25,6 +26,22 @@ public class cashier {
         this.position = position;
     }
 
+    public LocalDate getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(LocalDate DOB) {
+        this.DOB = DOB;
+    }
+
+    public String getReg_date() {
+        return reg_date;
+    }
+
+    public void setReg_date(String reg_date) {
+        this.reg_date = reg_date;
+    }
+
     public String getCashier_ID() {
         return cashier_ID;
     }
@@ -33,11 +50,11 @@ public class cashier {
         this.cashier_ID = cashier_ID;
     }
 
-    public String getUser_ID() {
+    public int getUser_ID() {
         return user_ID;
     }
 
-    public void setUser_ID(String user_ID) {
+    public void setUser_ID(int user_ID) {
         this.user_ID = user_ID;
     }
 
@@ -57,13 +74,6 @@ public class cashier {
         this.last_name = last_name;
     }
 
-    public Date getDOB() {
-        return DOB;
-    }
-
-    public void setDOB(Date DOB) {
-        this.DOB = DOB;
-    }
 
     public String getAddress() {
         return address;
@@ -81,13 +91,6 @@ public class cashier {
         this.email_address = email_address;
     }
 
-    public Date getReg_date() {
-        return reg_date;
-    }
-
-    public void setReg_date(Date reg_date) {
-        this.reg_date = reg_date;
-    }
 
     public String getPosition() {
         return position;

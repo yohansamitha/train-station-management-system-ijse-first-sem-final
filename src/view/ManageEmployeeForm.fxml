@@ -10,12 +10,14 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageEmployeeFormController">
    <children>
-      <TableView fx:id="tblEmployee" layoutX="217.0" layoutY="155.0" onMouseReleased="#tblEmployeeSelection" onSort="#tblEmployeeOnAction" prefHeight="479.0" prefWidth="877.0">
+      <TableView fx:id="tblEmployee" layoutX="217.0" layoutY="155.0" onMouseReleased="#tblEmployeeSelection" prefHeight="479.0" prefWidth="877.0">
         <columns>
           <TableColumn fx:id="clmID" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="clmFirstName" prefWidth="130.0" text="First Name" />
@@ -40,14 +42,14 @@
       </Label>
       <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="294.0" layoutY="77.0" onKeyReleased="#searchOnKeyReleased" prefHeight="25.0" prefWidth="333.0" promptText="Search" />
       <JFXButton fx:id="btnSearch" layoutX="654.0" layoutY="77.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="64.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Search" />
-      <JFXTextField fx:id="txtID" labelFloat="true" layoutX="10.0" layoutY="102.0" onAction="#txtIDOnAction" prefHeight="30.0" prefWidth="191.0" promptText="ID" />
-      <JFXTextField fx:id="txtFirstName" labelFloat="true" layoutX="10.0" layoutY="158.0" onAction="#txtFirstNameOnAction" prefHeight="30.0" prefWidth="191.0" promptText="First Name" />
-      <JFXTextField fx:id="txtLastName" labelFloat="true" layoutX="10.0" layoutY="213.0" onAction="#txtLastNameOnAction" prefHeight="30.0" prefWidth="191.0" promptText="Last Name" />
-      <JFXDatePicker fx:id="dtpDOB" layoutX="10.0" layoutY="269.0" onAction="#dtpDOB" prefHeight="30.0" prefWidth="191.0" promptText="Date of Birth(5/8/2020)" />
-      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="10.0" layoutY="323.0" onAction="#txtAddress" prefHeight="30.0" prefWidth="191.0" promptText="Address" />
-      <JFXTextField fx:id="txtEmailAddress" labelFloat="true" layoutX="10.0" layoutY="380.0" onAction="#txtEmailAddress" prefHeight="30.0" prefWidth="191.0" promptText="Email Address" />
-      <JFXTextField fx:id="txtRegisterDate" editable="false" labelFloat="true" layoutX="10.0" layoutY="437.0" prefHeight="30.0" prefWidth="191.0" promptText="Register Date" />
-      <JFXComboBox fx:id="cblEmployeeRole" labelFloat="true" layoutX="10.0" layoutY="493.0" onAction="#cblEmployeeRoleOnAction" prefHeight="30.0" prefWidth="191.0" promptText="Employee Role">
+      <JFXTextField fx:id="txtID" labelFloat="true" layoutX="10.0" layoutY="102.0" onAction="#txtIDOnAction" prefHeight="30.0" prefWidth="145.0" promptText="ID" />
+      <JFXTextField fx:id="txtFirstName" labelFloat="true" layoutX="10.0" layoutY="210.0" onAction="#txtFirstNameOnAction" prefHeight="30.0" prefWidth="191.0" promptText="First Name" />
+      <JFXTextField fx:id="txtLastName" labelFloat="true" layoutX="10.0" layoutY="265.0" onAction="#txtLastNameOnAction" prefHeight="30.0" prefWidth="191.0" promptText="Last Name" />
+      <JFXDatePicker fx:id="dtpDOB" layoutX="10.0" layoutY="321.0" onAction="#dtpDOB" prefHeight="30.0" prefWidth="191.0" promptText="Date of Birth(5/8/2020)" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="10.0" layoutY="375.0" onAction="#txtAddress" prefHeight="30.0" prefWidth="191.0" promptText="Address" />
+      <JFXTextField fx:id="txtEmailAddress" labelFloat="true" layoutX="10.0" layoutY="432.0" onAction="#txtEmailAddress" prefHeight="30.0" prefWidth="191.0" promptText="Email Address" />
+      <JFXTextField fx:id="txtRegisterDate" editable="false" labelFloat="true" layoutX="10.0" layoutY="489.0" prefHeight="30.0" prefWidth="191.0" promptText="Register Date" />
+      <JFXComboBox fx:id="cblEmployeeRole" labelFloat="true" layoutX="10.0" layoutY="156.0" onAction="#cblEmployeeRoleOnAction" prefHeight="30.0" prefWidth="191.0" promptText="Employee Role">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Cashier" />
@@ -58,5 +60,11 @@
       </JFXComboBox>
       <JFXButton fx:id="btnSave" layoutX="10.0" layoutY="552.0" onAction="#btnSaveOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Save" />
       <JFXButton fx:id="btnCancel" layoutX="10.0" layoutY="609.0" onAction="#btnCancelOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Cancel" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="167.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" x="1.0" y="2.0">
+         <image>
+            <Image url="@../assets/icons8-delete-bin-48.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnDeleteEmp" disable="true" layoutX="167.0" layoutY="100.0" onAction="#btnDeleteEmpOnAction" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: black; -fx-border-insets: 0.5; -fx-background-color: transparent;" text="  " />
    </children>
 </AnchorPane>
