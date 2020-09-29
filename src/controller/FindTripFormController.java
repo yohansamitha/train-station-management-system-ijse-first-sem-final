@@ -3,10 +3,7 @@ package controller;
 import animatefx.animation.FadeIn;
 import bo.BOFactory;
 import bo.custom.FindTripBO;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import dto.StationDTO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -15,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -62,6 +60,9 @@ public class FindTripFormController implements Initializable {
     public JFXTextField txtStationTableSearch;
     public JFXButton btnPlaceBooking;
     public JFXButton btnCancel;
+    public JFXTextField txtTotal;
+    public JFXRadioButton rdbCard;
+    public JFXRadioButton rdbCash;
     FindTripBO findTripBO = (FindTripBO) BOFactory.getInstance().getBO(BOFactory.BoType.FindTripBOImpl);
 
     @Override
@@ -86,7 +87,7 @@ public class FindTripFormController implements Initializable {
         clm1rdClass.setCellValueFactory(new PropertyValueFactory<>("st_class_seat_price1"));
         clm2rdClass.setCellValueFactory(new PropertyValueFactory<>("st_class_seat_price2"));
         clm3rdClass.setCellValueFactory(new PropertyValueFactory<>("st_class_seat_price3"));
-
+        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
         loadAllCustomer();
         loadAllStations();
     }
@@ -136,8 +137,10 @@ public class FindTripFormController implements Initializable {
     }
 
     public void rdbCardOnAction(ActionEvent actionEvent) {
+        rdbCash.setSelected(false);
     }
 
     public void rdbCashOnAction(ActionEvent actionEvent) {
+        rdbCard.setSelected(false);
     }
 }
