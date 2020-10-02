@@ -50,6 +50,8 @@ public class ManageEmployeeBOImpl implements ManageEmployeeBO {
                     connection.commit();
                     System.out.println("connection true");
                     return true;
+                }else{
+                    connection.rollback();
                 }
             } else {
                 connection.rollback();

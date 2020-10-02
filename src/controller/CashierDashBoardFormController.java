@@ -15,6 +15,7 @@ import java.util.Optional;
 public class CashierDashBoardFormController {
     public AnchorPane root;
     public AnchorPane context;
+    String cashier_ID;
 
     public void btnLogout(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -37,7 +38,10 @@ public class CashierDashBoardFormController {
     }
 
     public void btnFindTripOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/FindTripForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("../view/FindTripForm.fxml"));
+        Parent parent = fxmlLoader.load();
+        FindTripFormController controller = fxmlLoader.getController();
+        controller.setCashierID(cashier_ID);
         context.getChildren().clear();
         context.getChildren().add(parent);
     }
@@ -49,5 +53,9 @@ public class CashierDashBoardFormController {
     }
 
     public void btnAboutOnAction(ActionEvent actionEvent) {
+    }
+
+    public void setCashierID(String cashierID) {
+        this.cashier_ID = cashierID;
     }
 }

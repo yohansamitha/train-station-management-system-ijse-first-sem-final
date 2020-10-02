@@ -1,8 +1,10 @@
 package dao.custom.impl;
 
+import dao.CrudUtil;
 import dao.custom.BookingDAO;
 import entity.booking;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ public class BookingDAOImpl implements BookingDAO {
     @Override
     public boolean add(booking booking) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO booking VALUES(?,?,?,?)";
-        return false;
+        return true;
     }
 
     @Override
@@ -40,4 +42,14 @@ public class BookingDAOImpl implements BookingDAO {
         String sql = "SELECT * FROM booking";
         return null;
     }
+
+    public int getRowCount() throws SQLException, ClassNotFoundException {
+        String sql="SELECT COUNT(booking_ID) FROM booking";
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        if (resultSet.next()){
+            return resultSet.getInt(1);
+        }
+        return -1;
+    }
+
 }

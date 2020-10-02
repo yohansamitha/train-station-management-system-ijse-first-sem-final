@@ -175,14 +175,14 @@ public class customEntity {
     @Override
     public String toString() {
         return "customEntity{" +
-                "ID='" + ID + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", DOB=" + DOB +
-                ", address='" + address + '\'' +
-                ", email_address='" + email_address + '\'' +
-                ", reg_date=" + reg_date +
-                ", position='" + position + '\'' +
+                "schedule_ID='" + schedule_ID + '\'' +
+                ", engine_number='" + engine_number + '\'' +
+                ", engine_name='" + engine_name + '\'' +
+                ", primary_driver_ID='" + primary_driver_ID + '\'' +
+                ", assistant_driver_ID='" + assistant_driver_ID + '\'' +
+                ", route_ID='" + route_ID + '\'' +
+                ", date=" + date +
+                ", time=" + time +
                 '}';
     }
 }

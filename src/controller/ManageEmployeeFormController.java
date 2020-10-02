@@ -373,10 +373,10 @@ public class ManageEmployeeFormController implements Initializable {
 //            );
             preparedStatement.setObject(1, search);
             preparedStatement.setObject(2, search);
-//            preparedStatement.setObject(3, search);
-//            preparedStatement.setObject(4, search);
-//            preparedStatement.setObject(5, search);
-//            preparedStatement.setObject(6, search);
+//            preparedStatement.setObject(3, ticketPriceSearch);
+//            preparedStatement.setObject(4, ticketPriceSearch);
+//            preparedStatement.setObject(5, ticketPriceSearch);
+//            preparedStatement.setObject(6, ticketPriceSearch);
             ResultSet resultSet = preparedStatement.executeQuery();
             ArrayList<customEntity> searchResult = new ArrayList<>();
             while (resultSet.next()) {

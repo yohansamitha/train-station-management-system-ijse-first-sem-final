@@ -54,4 +54,15 @@ public class station {
     public void setDistance(int distance) {
         this.distance = distance;
     }
+
+    @Override
+    public String toString() {
+        return "station{" +
+                "station_ID='" + station_ID + '\'' +
+                ", route_ID='" + route_ID + '\'' +
+                ", station_name='" + station_name + '\'' +
+                ", distance=" + distance +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
 }

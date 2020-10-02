@@ -35,7 +35,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public customer search(String s) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM customer WHERE customer_ID=?";
+        String sql = "SELECT customer_ID, first_name, last_name, DOB, address, email_address FROM customer " +
+                "WHERE customer_ID=?";
+        ResultSet resultSet = CrudUtil.executeQuery(sql,s);
+        if (resultSet.next()){
+            return new customer(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getDate(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6)
+                    );
+        }
         return null;
     }
 
@@ -47,11 +59,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public ArrayList<String> getAllCustomerID() throws SQLException, ClassNotFoundException {
-        String sql="SELECT customer_ID FROM customer";
+        String sql="SELECT customer_ID,first_name FROM customer";
         ArrayList<String> allCustomerID = new ArrayList<>();
         ResultSet resultSet = CrudUtil.executeQuery(sql);
         while (resultSet.next()){
-            allCustomerID.add(resultSet.getString(1));
+            allCustomerID.add(resultSet.getString(1)+" "+resultSet.getString(2));
         }
         return allCustomerID;
     }

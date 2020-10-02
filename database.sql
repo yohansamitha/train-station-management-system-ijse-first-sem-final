@@ -133,6 +133,7 @@ booking_Details_ID VARCHAR (10) PRIMARY KEY ,
 booking_ID VARCHAR (10),
 reserved_class VARCHAR (10),
 reserved_seat_count INT (10),
+reserved_seat_price INT (10),
 FOREIGN KEY (booking_ID) REFERENCES booking(booking_ID)
 );
 
@@ -141,7 +142,8 @@ payment_ID VARCHAR (10) PRIMARY KEY ,
 booking_ID VARCHAR (10) NOT NULL ,
 ticket_price DOUBLE (10,2) NOT NULL,
 paid_price DOUBLE (10,2) NOT NULL,
-payment_method VARCHAR (10) DEFAULT 'not paid'
+payment_method VARCHAR (10) DEFAULT 'not paid',
+FOREIGN KEY (booking_ID) REFERENCES booking(booking_ID)
 );
 
 
@@ -202,6 +204,9 @@ INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count,
 INSERT INTO ticket_prices(ticket_price_ID, station_ID, route_ID, 1st_class_seat_price, 2st_class_seat_price, 3st_class_seat_price) VALUES
 ("T001","S001","R001",100,80,60);
 
+INSERT INTO schedule (schedule_ID, engine_number, primary_driver_ID, assistant_driver_ID, route_ID, date, time) VALUES
+('S001', 'Eng1020', 'P001', 'A001', 'R001', '2020-10-01', '05:00:00');
+
 select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier union
 select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver union
 select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver;
@@ -211,20 +216,36 @@ select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_da
 --                 + "address like '"+txtSearch.getText()+"%' or "
 --                 + "type like '"+txtSearch.getText()+"%' or "
 --                 + "contactNumber like '"+txtSearch.getText()+"%'
-btn.setOnMouseEntered(e -> {
-            btn.setEffect(new Bloom(0));
-            btn.setStyle("-fx-border-color: #ffffff;");
-        });
-        btn.setOnMouseExited(e -> {
-            btn.setEffect(new Bloom(1));
-            btn.setStyle("-fx-background-color: transparent;");
-        });
+-- btn.setOnMouseEntered(e -> {
+--             btn.setEffect(new Bloom(0));
+--             btn.setStyle("-fx-border-color: #ffffff;");
+--         });
+--         btn.setOnMouseExited(e -> {
+--             btn.setEffect(new Bloom(1));
+--             btn.setStyle("-fx-background-color: transparent;");
+--         });
 -- working
 -- select * from cashier where cashier_ID like '"+E002+"%' or first_name like '"hashan+"%'
 
+select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
+on schedule.engine_number = train.engine_number;
 
+select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
+on schedule.engine_number = train.engine_number
+where date = '2020-10-01';
 
+select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
+on schedule.engine_number = train.engine_number
+where route_ID = ? AND date = ? ;
 
+select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
+on schedule.engine_number = train.engine_number where route_ID = 'R001' AND date = '2020-10-01';
+
+select * from schedule left join train on schedule.engine_number = train.engine_number;
+
+SELECT c.cashier_ID  FROM cashier c,users u WHERE c.user_ID = u.user_ID && u.user_Name=?;
+
+SELECT c.cashier_ID  FROM cashier c,users u WHERE c.user_ID = u.user_ID && u.user_Name="";
 
 
 

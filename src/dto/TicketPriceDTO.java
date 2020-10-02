@@ -3,13 +3,15 @@ package dto;
 public class TicketPriceDTO {
     private String ticket_price_ID;
     private String station_ID;
-    private int    st_class_seat_price1;
-    private int    st_class_seat_price2;
-    private int    st_class_seat_price3;
+    private String route_ID;
+    private int st_class_seat_price1;
+    private int st_class_seat_price2;
+    private int st_class_seat_price3;
 
-    public TicketPriceDTO(String ticket_price_ID, String station_ID, int st_class_seat_price1, int st_class_seat_price2, int st_class_seat_price3) {
+    public TicketPriceDTO(String ticket_price_ID, String station_ID, String route_ID, int st_class_seat_price1, int st_class_seat_price2, int st_class_seat_price3) {
         this.ticket_price_ID = ticket_price_ID;
         this.station_ID = station_ID;
+        this.route_ID = route_ID;
         this.st_class_seat_price1 = st_class_seat_price1;
         this.st_class_seat_price2 = st_class_seat_price2;
         this.st_class_seat_price3 = st_class_seat_price3;
@@ -29,6 +31,14 @@ public class TicketPriceDTO {
 
     public void setStation_ID(String station_ID) {
         this.station_ID = station_ID;
+    }
+
+    public String getRoute_ID() {
+        return route_ID;
+    }
+
+    public void setRoute_ID(String route_ID) {
+        this.route_ID = route_ID;
     }
 
     public int getSt_class_seat_price1() {

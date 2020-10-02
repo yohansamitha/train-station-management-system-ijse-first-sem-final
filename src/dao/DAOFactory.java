@@ -28,6 +28,14 @@ public class DAOFactory {
                 return new CustomerDAOImpl();
             case StationDAOImpl:
                 return new StationDAOImpl();
+            case Ticket_priceDAOImpl:
+                return new Ticket_priceDAOImpl();
+            case BookingDAOImpl:
+                return new BookingDAOImpl();
+            case Booking_detailsDAOImpl:
+                return new Booking_detailsDAOImpl();
+            case PaymentDAOImpl:
+                return new PaymentDAOImpl();
             default:
                 return null;
         }
@@ -41,5 +49,9 @@ public class DAOFactory {
         CashierDAOImpl,
         CustomerDAOImpl,
         StationDAOImpl,
+        Ticket_priceDAOImpl,
+        BookingDAOImpl,
+        Booking_detailsDAOImpl,
+        PaymentDAOImpl,
     }
 }

@@ -32,7 +32,21 @@ public class StationDAOImpl implements StationDAO {
 
     @Override
     public station search(String s) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM station WHERE station_ID=?";
+        String sql = "SELECT * FROM station WHERE station_name=?";
+        System.out.println("coming");
+        System.out.println(s+" search id");
+        ResultSet resultSet = CrudUtil.executeQuery(sql, s);
+        System.out.println("fuck");
+        if (resultSet.next()){
+            System.out.println("not null");
+            return new station(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getInt(4),
+                    resultSet.getString(5)
+            );
+        }
         return null;
     }
 
