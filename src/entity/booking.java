@@ -54,4 +54,15 @@ public class booking {
     public void setTicket_price_ID(String ticket_price_ID) {
         this.ticket_price_ID = ticket_price_ID;
     }
+
+    @Override
+    public String toString() {
+        return "booking{" +
+                "booking_ID='" + booking_ID + '\'' +
+                ", schedule_ID='" + schedule_ID + '\'' +
+                ", customer_ID='" + customer_ID + '\'' +
+                ", ticket_price_ID='" + ticket_price_ID + '\'' +
+                ", cashier_ID='" + cashier_ID + '\'' +
+                '}';
+    }
 }

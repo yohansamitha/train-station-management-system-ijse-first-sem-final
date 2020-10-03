@@ -93,8 +93,8 @@ public class LoginFromController implements Initializable {
                         parent = FXMLLoader.load(this.getClass().getResource("../view/AdminDashBoardForm.fxml"));
                     } else {
                         System.out.println("working");
-                        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("../view/CashierDashBoardForm.fxml"));
 //                        parent = FXMLLoader.load(this.getClass().getResource("../view/CashierDashBoardForm.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("../view/CashierDashBoardForm.fxml"));
                         parent =  fxmlLoader.load();
                         CashierDashBoardFormController controller = fxmlLoader.getController();
                         String cashierID = queryDAO.getCashierID(txtUserName.getText());

@@ -140,7 +140,6 @@ FOREIGN KEY (booking_ID) REFERENCES booking(booking_ID)
 CREATE TABLE payment(
 payment_ID VARCHAR (10) PRIMARY KEY ,
 booking_ID VARCHAR (10) NOT NULL ,
-ticket_price DOUBLE (10,2) NOT NULL,
 paid_price DOUBLE (10,2) NOT NULL,
 payment_method VARCHAR (10) DEFAULT 'not paid',
 FOREIGN KEY (booking_ID) REFERENCES booking(booking_ID)
@@ -207,6 +206,12 @@ INSERT INTO ticket_prices(ticket_price_ID, station_ID, route_ID, 1st_class_seat_
 INSERT INTO schedule (schedule_ID, engine_number, primary_driver_ID, assistant_driver_ID, route_ID, date, time) VALUES
 ('S001', 'Eng1020', 'P001', 'A001', 'R001', '2020-10-01', '05:00:00');
 
+INSERT INTO booking(booking_ID, schedule_ID, customer_ID, ticket_price_ID, cashier_ID) VALUES (?,?,?,?,?);
+
+INSERT INTO booking_Details(booking_Details_ID, booking_ID, reserved_class, reserved_seat_count, reserved_seat_price) VALUES (?,?,?,?,?);
+
+INSERT INTO payment(payment_ID, booking_ID, paid_price,payment_method) VALUES (?,?,?,?);
+
 select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier union
 select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver union
 select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver;
@@ -247,6 +252,24 @@ SELECT c.cashier_ID  FROM cashier c,users u WHERE c.user_ID = u.user_ID && u.use
 
 SELECT c.cashier_ID  FROM cashier c,users u WHERE c.user_ID = u.user_ID && u.user_Name="";
 
+select engine_number,assistant_driver_ID,primary_driver_ID from schedule where date = '2020-10-01' and time='06:00:00';
+
+select (1st_clas_seat_count-reserved_seat_count) as availiable from booking_details
+inner join  booking on
+booking_details.booking_ID = booking.booking_ID
+inner join schedule on
+booking.schedule_id = schedule.schedule_id inner join seat_detail on
+schedule.engine_number = seat_detail.engine_number
+where schedule.schedule_id = 'S001';
+
+
+select (1st_clas_seat_count-reserved_seat_count) as availiable from booking_details
+inner join  booking on
+booking_details.booking_ID = booking.booking_ID
+inner join schedule on
+booking.schedule_id = schedule.schedule_id inner join seat_detail on
+schedule.engine_number = seat_detail.engine_number
+where schedule.schedule_id = 'S001' AND booking_Details.reserved_class ='CLS001';
 
 
 

@@ -7,29 +7,23 @@ import com.jfoenix.controls.*;
 import dto.*;
 import entity.customEntity;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class FindTripFormController implements Initializable {
@@ -75,6 +69,7 @@ public class FindTripFormController implements Initializable {
     public JFXTextField txtCustomerName;
     public JFXTextField txtCustomerAddress;
     public JFXButton btnScheduleSearch;
+    public Label lblFindTrip;
     FindTripBO findTripBO = (FindTripBO) BOFactory.getInstance().getBO(BOFactory.BoType.FindTripBOImpl);
     ArrayList<String> allStationNames = new ArrayList<>();
     private String scheduleID;
@@ -191,7 +186,19 @@ public class FindTripFormController implements Initializable {
             bookingDetailsDTOS.add(new BookingDetailsDTO("CLS002", spn2Class.getValue(), st_class_seat_price2));
             bookingDetailsDTOS.add(new BookingDetailsDTO("CLS003", spn3Class.getValue(), st_class_seat_price3));
             BookingDTO bookingDTO = new BookingDTO(scheduleID, customerID[0], ticket_price_ID, cashier_ID, bookingDetailsDTOS, Double.parseDouble(txtTotal.getText()), paymentMethod);
-            findTripBO.createBooking(bookingDTO);
+            boolean bookingAdded = findTripBO.createBooking(bookingDTO);
+            System.out.println(bookingAdded + " booking added Successfully");
+
+            if (bookingAdded) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Booking Placed SuccessFully!");
+                Optional<ButtonType> res = alert.showAndWait();
+                if (res.isPresent()) {
+                    if (res.get().equals(ButtonType.CANCEL)) {
+                        cleanAll();
+                    }
+                }
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
         } catch (ClassNotFoundException exception) {
@@ -200,7 +207,27 @@ public class FindTripFormController implements Initializable {
 
     }
 
+    private void cleanAll() {
+        cmbCustomerSearch.setValue("");
+        txtCustomerName.setText("");
+        txtCustomerAddress.setText("");
+        dtpTripDate.setValue(LocalDate.now());
+        txtStationSearch.setText("");
+        txtStationTableSearch.setText("");
+        tblSchedule.setItems(FXCollections.observableArrayList());
+        tblTicketPrice.setItems(FXCollections.observableArrayList());
+        lblFindTrip.requestFocus();
+        txtTotal.setText("");
+        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,0,0));
+        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,30,0));
+        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,0,0));
+        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,30,0));
+        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,0,0));
+        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,30,0));
+    }
+
     public void btnCancelOnAction(ActionEvent actionEvent) {
+        cleanAll();
     }
 
     public void btnNewCustomerOnAction(ActionEvent actionEvent) {

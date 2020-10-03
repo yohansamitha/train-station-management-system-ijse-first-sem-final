@@ -11,8 +11,15 @@ import java.util.ArrayList;
 public class BookingDAOImpl implements BookingDAO {
     @Override
     public boolean add(booking booking) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO booking VALUES(?,?,?,?)";
-        return true;
+        System.out.println(booking.toString());
+        String sql = "INSERT INTO booking(booking_ID, schedule_ID, customer_ID, ticket_price_ID, cashier_ID) VALUES (?,?,?,?,?)";
+        return CrudUtil.executeUpdate(sql,
+                booking.getBooking_ID(),
+                booking.getSchedule_ID(),
+                booking.getCustomer_ID(),
+                booking.getTicket_price_ID(),
+                booking.getCashier_ID()
+        );
     }
 
     @Override

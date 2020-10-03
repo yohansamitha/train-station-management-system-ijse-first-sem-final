@@ -5,14 +5,8 @@ import dao.DAOFactory;
 import dao.custom.*;
 import dao.custom.impl.Booking_detailsDAOImpl;
 import db.DBConnection;
-import dto.BookingDTO;
-import dto.CustomerDTO;
-import dto.StationDTO;
-import dto.TicketPriceDTO;
-import entity.booking;
-import entity.customEntity;
-import entity.station;
-import entity.ticket_price;
+import dto.*;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -85,34 +79,85 @@ public class FindTripBOImpl implements FindTripBO {
         System.out.println(bookingDTO.toString() + " create booking in find trip bo");
 
         Connection connection = DBConnection.getInstance().getConnection();
-        connection.setAutoCommit(false);
+        try {
+            connection.setAutoCommit(false);
 
-        int rowCount = bookingDAO.getRowCount();
-        String bookingID = getBookingID(rowCount);
+            int bookingRowCount = bookingDAO.getRowCount();
+            String bookingID = getBookingID(bookingRowCount);
 
-        boolean bookingAdd = bookingDAO.add(new booking(bookingID,bookingDTO.getSchedule_ID(),bookingDTO.getCustomer_ID(),bookingDTO.getTicket_price_ID(),bookingDTO.getCashier_ID()));
-        if (bookingAdd) {
-            System.out.println("booking added");
-//            booking_detailsDAO.add();
-//            main trains action part is in 2 stage
-//            if (){
-//
-//            }
-        }else{
-            connection.rollback();
-            return false;
+            boolean bookingAdd = bookingDAO.add(new booking(bookingID, bookingDTO.getSchedule_ID(), bookingDTO.getCustomer_ID(), bookingDTO.getTicket_price_ID(), bookingDTO.getCashier_ID()));
+            if (bookingAdd) {
+                System.out.println("booking added");
+                boolean bookingDetailsAdd = addBookingDetails(bookingDTO.getBookingDetailsDTOS(), bookingID);
+                if (bookingDetailsAdd) {
+                    System.out.println("booking details add");
+                    int paymentRowCount = paymentDAO.getRowCount();
+                    String paymentID = getPaymentID(paymentRowCount);
+                    boolean paymentAdded = paymentDAO.add(new payment(paymentID, bookingID, bookingDTO.getPaidPrice(), bookingDTO.getPaymentMethod()));
+                    if (paymentAdded) {
+                        System.out.println("payment added");
+                        connection.commit();
+                        return true;
+                    }
+                }
+            } else {
+                connection.rollback();
+                return false;
+            }
+        }finally {
+            connection.setAutoCommit(true);
         }
-
         return false;
+    }
+
+    private boolean addBookingDetails(ArrayList<BookingDetailsDTO> bookingDetailsDTOS, String bookingID) throws SQLException, ClassNotFoundException {
+        boolean bookingDetailsAdd;
+        for (int i = 0; i < 3; i++) {
+            int bookingDetailsRowCount = booking_detailsDAO.getRowCount();
+            String bookingDetailsID = getBookingDetailsID(bookingDetailsRowCount);
+            BookingDetailsDTO bookingDetailsDTO = bookingDetailsDTOS.get(i);
+            System.out.println(bookingDetailsDTO.toString() + " booking details id");
+            bookingDetailsAdd = booking_detailsDAO.add(new booking_details(
+                    bookingDetailsID,
+                    bookingID,
+                    bookingDetailsDTO.getReserved_class(),
+                    bookingDetailsDTO.getReserved_seat_count(),
+                    bookingDetailsDTO.getSt_class_seat_price()
+            ));
+            if (!bookingDetailsAdd) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private String getPaymentID(int paymentRowCount) {
+        if (paymentRowCount < 9) {
+            return "P00" + (paymentRowCount + 1);
+        } else if (paymentRowCount < 99) {
+            return "P0" + (paymentRowCount + 1);
+        } else {
+            return "P" + (paymentRowCount + 1);
+        }
+    }
+
+    private String getBookingDetailsID(int bookingDetailsRowCount) {
+        if (bookingDetailsRowCount < 9) {
+            return "BD00" + (bookingDetailsRowCount + 1);
+        } else if (bookingDetailsRowCount < 99) {
+            return "BD0" + (bookingDetailsRowCount + 1);
+        } else {
+            return "BD" + (bookingDetailsRowCount + 1);
+        }
     }
 
     private String getBookingID(int rowCount) {
         if (rowCount < 9) {
-            return  "E00" + (rowCount + 1);
+            return "E00" + (rowCount + 1);
         } else if (rowCount < 99) {
-            return  "E0" + (rowCount + 1);
+            return "E0" + (rowCount + 1);
         } else {
-            return  "E" + (rowCount + 1);
+            return "E" + (rowCount + 1);
         }
     }
 }

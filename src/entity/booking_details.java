@@ -5,12 +5,22 @@ public class booking_details {
     private String booking_ID ;
     private String reserved_class ;
     private int reserved_seat_count ;
+    private int reserved_seat_price;
 
-    public booking_details(String booking_Details_ID, String booking_ID, String reserved_class, int reserved_seat_count) {
+    public booking_details(String booking_Details_ID, String booking_ID, String reserved_class, int reserved_seat_count, int reserved_seat_price) {
         this.booking_Details_ID = booking_Details_ID;
         this.booking_ID = booking_ID;
         this.reserved_class = reserved_class;
         this.reserved_seat_count = reserved_seat_count;
+        this.reserved_seat_price = reserved_seat_price;
+    }
+
+    public int getReserved_seat_price() {
+        return reserved_seat_price;
+    }
+
+    public void setReserved_seat_price(int reserved_seat_price) {
+        this.reserved_seat_price = reserved_seat_price;
     }
 
     public String getBooking_Details_ID() {
