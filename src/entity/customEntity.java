@@ -22,6 +22,25 @@ public class customEntity {
     private Date   date;
     private Time   time;
 
+    private String train_name;
+    private String engine_type;
+    private int fuel_capacity;
+    private String station_ID;
+    private int clas_seat_count1;
+    private int clas_seat_count2;
+    private int clas_seat_count3;
+
+    public customEntity(String engine_number, String train_name, String engine_type, int fuel_capacity, String station_ID, int clas_seat_count1, int clas_seat_count2, int clas_seat_count3) {
+        this.engine_number = engine_number;
+        this.train_name = train_name;
+        this.engine_type = engine_type;
+        this.fuel_capacity = fuel_capacity;
+        this.station_ID = station_ID;
+        this.clas_seat_count1 = clas_seat_count1;
+        this.clas_seat_count2 = clas_seat_count2;
+        this.clas_seat_count3 = clas_seat_count3;
+    }
+
     public customEntity(String schedule_ID, String engine_number, String engine_name, String primary_driver_ID, String assistant_driver_ID, String route_ID, Date date, Time time) {
         this.schedule_ID = schedule_ID;
         this.engine_number = engine_number;
@@ -42,6 +61,62 @@ public class customEntity {
         this.email_address = email_address;
         this.reg_date = reg_date;
         this.position = position;
+    }
+
+    public String getTrain_name() {
+        return train_name;
+    }
+
+    public void setTrain_name(String train_name) {
+        this.train_name = train_name;
+    }
+
+    public String getEngine_type() {
+        return engine_type;
+    }
+
+    public void setEngine_type(String engine_type) {
+        this.engine_type = engine_type;
+    }
+
+    public int getFuel_capacity() {
+        return fuel_capacity;
+    }
+
+    public void setFuel_capacity(int fuel_capacity) {
+        this.fuel_capacity = fuel_capacity;
+    }
+
+    public String getStation_ID() {
+        return station_ID;
+    }
+
+    public void setStation_ID(String station_ID) {
+        this.station_ID = station_ID;
+    }
+
+    public int getClas_seat_count1() {
+        return clas_seat_count1;
+    }
+
+    public void setClas_seat_count1(int clas_seat_count1) {
+        this.clas_seat_count1 = clas_seat_count1;
+    }
+
+    public int getClas_seat_count2() {
+        return clas_seat_count2;
+    }
+
+    public void setClas_seat_count2(int clas_seat_count2) {
+        this.clas_seat_count2 = clas_seat_count2;
+    }
+
+    public int getClas_seat_count3() {
+        return clas_seat_count3;
+    }
+
+    public void setClas_seat_count3(int clas_seat_count3) {
+        this.clas_seat_count3 = clas_seat_count3;
     }
 
     public String getSchedule_ID() {

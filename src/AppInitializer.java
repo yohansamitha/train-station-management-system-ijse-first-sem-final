@@ -14,12 +14,13 @@ import java.util.Optional;
 
 public class AppInitializer extends Application {
     Parent root;
-
     public AppInitializer() {
         try {
-            root = FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"));
+//            root = FXMLLoader.load(this.getClass().getResource("view/LoginFrom.fxml"));
+            root = FXMLLoader.load(this.getClass().getResource("view/ManageRoutesForm.fxml"));
 //            root = FXMLLoader.load(this.getClass().getResource("view/FindTripForm.fxml"));
-//            root = FXMLLoader.load(this.getClass().getResource("view/testing.fxml"));
+//            root = FXMLLoader.load(this.getClass().getResource("view/ManageCustomerForm.fxml"));
+//            root = FXMLLoader.load(this.getClass().getResource("view/TrainDetailsForm.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +39,7 @@ public class AppInitializer extends Application {
         primaryStage.getIcons().add(image);
         primaryStage.setTitle("Sri Lanka Railway Department");
         primaryStage.sizeToScene();
-//        primaryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+        primaryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
         primaryStage.setResizable(false);
         primaryStage.show();
 //        new FadeInUpBig(root).play();

@@ -2,15 +2,25 @@ package entity;
 
 public class train {
     private String engine_number;
+    private String train_name;
     private String engine_type;
     private int fuel_capacity;
     private String station_ID;
 
-    public train(String engine_number, String engine_type, int fuel_capacity, String station_ID) {
+    public train(String engine_number, String train_name, String engine_type, int fuel_capacity, String station_ID) {
         this.engine_number = engine_number;
+        this.train_name = train_name;
         this.engine_type = engine_type;
         this.fuel_capacity = fuel_capacity;
         this.station_ID = station_ID;
+    }
+
+    public String getTrain_name() {
+        return train_name;
+    }
+
+    public void setTrain_name(String train_name) {
+        this.train_name = train_name;
     }
 
     public String getEngine_number() {

@@ -9,20 +9,22 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageSchedulesFormController">
-    <TableView layoutX="217.0" layoutY="177.0" prefHeight="479.0" prefWidth="877.0">
+    <TableView fx:id="tblSchedule" layoutX="217.0" layoutY="177.0" onMouseReleased="#tblScheduleOMouseReleased" prefHeight="479.0" prefWidth="877.0">
         <columns>
-            <TableColumn prefWidth="100.0" text="Schedule ID" />
-            <TableColumn prefWidth="110.0" text="Engine Number" />
-            <TableColumn prefWidth="144.0" text="Primary Driver" />
-            <TableColumn prefWidth="142.0" text="Assistant Driver" />
-            <TableColumn prefWidth="90.0" text="Route ID" />
-            <TableColumn prefWidth="110.0" text="Date" />
-            <TableColumn prefWidth="100.0" text="Time" />
-            <TableColumn text=" " />
+            <TableColumn fx:id="clmScheduleID" prefWidth="100.0" text="Schedule ID" />
+            <TableColumn fx:id="clmEngineNumber" prefWidth="120.0" text="Engine Number" />
+            <TableColumn fx:id="clmEngineName" prefWidth="120.0" text="Engine Name" />
+            <TableColumn fx:id="clmPrimaryDriver" prefWidth="120.0" text="Primary Driver ID" />
+            <TableColumn fx:id="clmAssistantDriver" prefWidth="120.0" text="Assistant Driver ID" />
+            <TableColumn fx:id="clmRouteID" prefWidth="95.0" text="Route ID" />
+            <TableColumn fx:id="clmDate" prefWidth="100.0" text="Date" />
+            <TableColumn fx:id="clmTime" prefWidth="100.0" text="Time" />
         </columns>
     </TableView>
     <Label layoutX="13.0" layoutY="37.0" text="Create schedule">
@@ -37,14 +39,20 @@
         </font>
     </Label>
     <JFXTextField fx:id="txtScheduleSearch" labelFloat="true" layoutX="294.0" layoutY="77.0" prefHeight="25.0" prefWidth="333.0" promptText="Search" />
-    <JFXButton layoutX="654.0" layoutY="77.0" prefHeight="25.0" prefWidth="64.0" text="Search" />
-    <JFXTextField fx:id="txtScheduleID" labelFloat="true" layoutX="10.0" layoutY="102.0" prefHeight="30.0" prefWidth="191.0" promptText="Schedule ID" />
-   <JFXComboBox fx:id="cblSelectEngineNumber" labelFloat="true" layoutX="10.0" layoutY="163.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Engine Number" />
-   <JFXComboBox fx:id="cblSelectPrimaryDriver" labelFloat="true" layoutX="10.0" layoutY="214.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Primary Driver" />
-   <JFXComboBox fx:id="cblAssistantDriver" labelFloat="true" layoutX="10.0" layoutY="266.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Assistant Driver" />
-   <JFXComboBox fx:id="cblSelectRoute" labelFloat="true" layoutX="10.0" layoutY="320.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Route" />
-   <JFXDatePicker fx:id="cblSelectDate" layoutX="10.0" layoutY="382.0" prefWidth="191.0" promptText="Select Date" />
-   <JFXTimePicker fx:id="cblSelectDepTime" layoutX="10.0" layoutY="435.0" prefWidth="191.0" promptText="Select Departure time" />
-    <JFXButton fx:id="btnSave" layoutX="10.0" layoutY="573.0" onAction="#btnTesting" prefHeight="50.0" prefWidth="191.0" text="Save" />
+    <JFXButton fx:id="btnSearchOnAction" layoutX="654.0" layoutY="77.0" prefHeight="25.0" prefWidth="64.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Search" />
+    <JFXTextField fx:id="txtScheduleID" editable="false" labelFloat="true" layoutX="10.0" layoutY="102.0" prefHeight="30.0" prefWidth="157.0" promptText="Schedule ID" />
+   <JFXComboBox fx:id="cblSelectEngineNumber" labelFloat="true" layoutX="10.0" layoutY="264.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Engine Number" />
+   <JFXComboBox fx:id="cblSelectPrimaryDriver" labelFloat="true" layoutX="10.0" layoutY="315.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Primary Driver" />
+   <JFXComboBox fx:id="cblAssistantDriver" labelFloat="true" layoutX="10.0" layoutY="367.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Assistant Driver" />
+   <JFXComboBox fx:id="cblSelectRoute" labelFloat="true" layoutX="10.0" layoutY="421.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Route" />
+   <JFXDatePicker fx:id="dtpSelectDate" layoutX="10.0" layoutY="155.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Date" />
+    <JFXButton fx:id="btnSave" layoutX="10.0" layoutY="573.0" onAction="#btnSaveSchedule" prefHeight="50.0" prefWidth="191.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Save" />
    <JFXComboBox fx:id="cblFilterMood" labelFloat="true" layoutX="217.0" layoutY="138.0" prefHeight="25.0" prefWidth="191.0" promptText="Filter Mood" />
+   <JFXTimePicker fx:id="tpSelectDepTime" layoutX="10.0" layoutY="210.0" prefHeight="30.0" prefWidth="191.0" promptText="Select Departure Time" />
+   <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="172.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" x="1.0" y="2.0">
+      <image>
+         <Image url="@../assets/icons8-delete-bin-48.png" />
+      </image>
+   </ImageView>
+   <JFXButton fx:id="btnDeleteSchedule" disable="true" layoutX="171.0" layoutY="99.0" onAction="#btnDeleteScheduleOnAction" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: black; -fx-border-insets: 0.5; -fx-background-color: transparent;" text="  " />
 </AnchorPane>

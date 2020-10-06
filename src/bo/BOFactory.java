@@ -1,8 +1,6 @@
 package bo;
 
-import bo.custom.impl.FindTripBOImpl;
-import bo.custom.impl.LoginBOImpl;
-import bo.custom.impl.ManageEmployeeBOImpl;
+import bo.custom.impl.*;
 
 public class BOFactory {
     static BOFactory boFactory;
@@ -22,12 +20,32 @@ public class BOFactory {
                 return new ManageEmployeeBOImpl();
             case FindTripBOImpl:
                 return new FindTripBOImpl();
+            case ManageScheduleBOImpl:
+                return new ManageScheduleBOImpl();
+            case ManageCustomerBOImpl:
+                return new ManageCustomerBOImpl();
+            case TrainDetailBOImpl:
+                return new TrainDetailBOImpl();
+            case TrainScheduleBOImpl:
+                return new TrainScheduleBOImpl();
+            case ManageTrainBOImpl:
+                return new ManageTrainBOImpl();
+            case ManageRouteBOImpl:
+                return new ManageRouteBOImpl();
             default:
                 return null;
         }
     }
 
     public enum BoType {
-        LoginBOImpl, ManageEmployeeBOImpl,FindTripBOImpl
+        LoginBOImpl,
+        ManageEmployeeBOImpl,
+        FindTripBOImpl,
+        ManageScheduleBOImpl,
+        ManageCustomerBOImpl,
+        TrainDetailBOImpl,
+        TrainScheduleBOImpl,
+        ManageTrainBOImpl,
+        ManageRouteBOImpl,
     }
 }

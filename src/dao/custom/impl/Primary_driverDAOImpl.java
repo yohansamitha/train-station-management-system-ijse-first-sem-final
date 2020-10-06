@@ -67,4 +67,15 @@ public class Primary_driverDAOImpl implements Primary_driverDAO {
         }
         return -1;
     }
+
+    @Override
+    public ArrayList<String> getAllPrimaryDriverID() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT primary_driver_ID FROM primary_driver";
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        ArrayList<String> iDS = new ArrayList<>();
+        while (resultSet.next()){
+            iDS.add(resultSet.getString(1));
+        }
+        return iDS;
+    }
 }

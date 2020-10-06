@@ -1,8 +1,10 @@
 package dao.custom.impl;
 
+import dao.CrudUtil;
 import dao.custom.ScheduleDAO;
 import entity.schedule;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,7 +12,15 @@ public class ScheduleDAOImpl implements ScheduleDAO {
     @Override
     public boolean add(schedule schedule) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO schedule VALUES(?,?,?,?,?,?,?)";
-        return false;
+        return CrudUtil.executeUpdate(sql,
+                schedule.getSchedule_ID(),
+                schedule.getEngine_number(),
+                schedule.getPrimary_driver_ID(),
+                schedule.getAssistant_driver_ID(),
+                schedule.getRoute_ID(),
+                schedule.getDate(),
+                schedule.getTime()
+                );
     }
 
     @Override
@@ -42,5 +52,15 @@ public class ScheduleDAOImpl implements ScheduleDAO {
     public ArrayList<schedule> getAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM schedule";
         return null;
+    }
+
+    @Override
+    public int getRowCount() throws SQLException, ClassNotFoundException {
+        String sql="SELECT COUNT(schedule_ID) FROM schedule";
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        if (resultSet.next()){
+            return resultSet.getInt(1);
+        }
+        return -1;
     }
 }

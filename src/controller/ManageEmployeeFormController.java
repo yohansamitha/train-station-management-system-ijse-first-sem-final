@@ -48,7 +48,6 @@ public class ManageEmployeeFormController implements Initializable {
     public TableColumn clmEmailAddress;
     public TableColumn clmRegisterDate;
     public TableColumn clmPosition;
-    public TableColumn clmDelete;
     public TableView tblEmployee;
     public JFXTextField txtSearch;
     public JFXButton btnSearch;
@@ -276,6 +275,7 @@ public class ManageEmployeeFormController implements Initializable {
         txtRegisterDate.setText("");
 //        cblEmployeeRole.getItems().get(0);
 //        cblEmployeeRole.getSelectionModel().clearSelection();
+        cblEmployeeRole.setDisable(false);
         cblEmployeeRole.setValue(null);
         dtpDOB.setValue(null);
 //        dtpDOB.setValue(LocalDate.parse(""));
@@ -411,6 +411,7 @@ public class ManageEmployeeFormController implements Initializable {
 
     public void tblEmployeeSelection(MouseEvent mouseEvent) {
         customEntity s = (customEntity) tblEmployee.getSelectionModel().getSelectedItem();
+        cblEmployeeRole.setDisable(true);
         System.out.println(s.toString());
         txtID.setText(s.getID());
         txtFirstName.setText(s.getFirst_name());
@@ -419,6 +420,7 @@ public class ManageEmployeeFormController implements Initializable {
         txtEmailAddress.setText(s.getEmail_address());
         txtRegisterDate.setText(String.valueOf(s.getReg_date()));
         dtpDOB.setValue(LocalDate.parse(s.getDOB()));
+        System.out.println(s.getPosition()+" position");
         cblEmployeeRole.setValue(s.getPosition());
         lblHint.requestFocus();
         btnSave.setText("Update");

@@ -9,10 +9,10 @@ public class schedule {
     private String primary_driver_ID;
     private String assistant_driver_ID;
     private String route_ID;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
 
-    public schedule(String schedule_ID, String engine_number, String primary_driver_ID, String assistant_driver_ID, String route_ID, Date date, Time time) {
+    public schedule(String schedule_ID, String engine_number, String primary_driver_ID, String assistant_driver_ID, String route_ID, String date, String time) {
         this.schedule_ID = schedule_ID;
         this.engine_number = engine_number;
         this.primary_driver_ID = primary_driver_ID;
@@ -20,9 +20,6 @@ public class schedule {
         this.route_ID = route_ID;
         this.date = date;
         this.time = time;
-    }
-
-    public schedule() {
     }
 
     public String getSchedule_ID() {
@@ -65,19 +62,19 @@ public class schedule {
         this.route_ID = route_ID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,13 +47,28 @@ public class CashierDashBoardFormController {
         context.getChildren().add(parent);
     }
 
-    public void btnTrainScheduleOnAction(ActionEvent actionEvent) {
+    public void btnTrainScheduleOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("../view/TrainSchedulesForm.fxml"));
+        Parent parent = fxmlLoader.load();
+        context.getChildren().clear();
+        context.getChildren().add(parent);
+        new FadeIn(parent).play();
     }
 
-    public void btnTrainDetailsOnAction(ActionEvent actionEvent) {
+    public void btnTrainDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("../view/TrainDetailsForm.fxml"));
+        Parent parent = fxmlLoader.load();
+        context.getChildren().clear();
+        context.getChildren().add(parent);
+        new FadeIn(parent).play();
     }
 
-    public void btnAboutOnAction(ActionEvent actionEvent) {
+    public void btnAboutOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("../view/AboutForm.fxml"));
+        Parent parent = fxmlLoader.load();
+        context.getChildren().clear();
+        context.getChildren().add(parent);
+        new FadeIn(parent).play();
     }
 
     public void setCashierID(String cashierID) {

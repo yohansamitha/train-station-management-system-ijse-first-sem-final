@@ -1,6 +1,5 @@
 package dao.custom;
 
-import com.jfoenix.controls.JFXTextField;
 import dao.SuperDAO;
 import entity.customEntity;
 
@@ -13,4 +12,8 @@ public interface QueryDAO extends SuperDAO {
     ArrayList<customEntity> findSchedule(String date, String station) throws SQLException,ClassNotFoundException;
 
     String getCashierID(String txtUserName)throws SQLException,ClassNotFoundException;
+
+    ArrayList<customEntity> getAllSchedule(String value) throws SQLException, ClassNotFoundException;
+
+    ArrayList<customEntity> getAllTrain(String value) throws SQLException, ClassNotFoundException;
 }

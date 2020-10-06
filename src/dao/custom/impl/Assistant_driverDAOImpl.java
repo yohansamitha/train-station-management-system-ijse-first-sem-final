@@ -66,4 +66,15 @@ public class Assistant_driverDAOImpl implements Assistant_driverDAO {
         }
         return -1;
     }
+
+    @Override
+    public ArrayList<String> getAllAssistantDriverID() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT assistant_driver_ID FROM assistant_driver";
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        ArrayList<String> iDS = new ArrayList<>();
+        while (resultSet.next()){
+            iDS.add(resultSet.getString(1));
+        }
+        return iDS;
+    }
 }

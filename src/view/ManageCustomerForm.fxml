@@ -7,20 +7,21 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageCustomerFormController">
     <children>
-        <TableView fx:id="tblEmployee" layoutX="217.0" layoutY="155.0" prefHeight="500.0" prefWidth="877.0">
+        <TableView fx:id="tblCustomer" layoutX="217.0" layoutY="155.0" onMouseReleased="#tblCustomerOnMouseReleased" prefHeight="500.0" prefWidth="877.0">
             <columns>
                 <TableColumn fx:id="clmID" prefWidth="82.0" text="ID" />
-                <TableColumn fx:id="clmFirstName" prefWidth="157.0" text="First Name" />
-                <TableColumn fx:id="clmLastName" prefWidth="157.0" text="Last Name" />
-                <TableColumn fx:id="clmDateOfBirth" prefWidth="100.0" text="Date of Birth" />
-                <TableColumn fx:id="clmAddress" prefWidth="150.0" text="Address" />
-                <TableColumn fx:id="clmEmailAddress" prefWidth="150.0" text="Email Address" />
-                <TableColumn fx:id="clmDelete" text="Delete" />
+                <TableColumn fx:id="clmFirstName" prefWidth="170.0" text="First Name" />
+                <TableColumn fx:id="clmLastName" prefWidth="170.0" text="Last Name" />
+                <TableColumn fx:id="clmDateOfBirth" prefWidth="113.0" text="Date of Birth" />
+                <TableColumn fx:id="clmAddress" prefWidth="170.0" text="Address" />
+                <TableColumn fx:id="clmEmailAddress" prefWidth="170.0" text="Email Address" />
             </columns>
         </TableView>
         <Label layoutX="13.0" layoutY="37.0" text="Customer Registration">
@@ -34,14 +35,21 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <JFXTextField labelFloat="true" layoutX="294.0" layoutY="77.0" prefHeight="25.0" prefWidth="333.0" promptText="Search" />
-        <JFXButton fx:id="btnSearch" layoutX="654.0" layoutY="77.0" prefHeight="25.0" prefWidth="64.0" text="Search" />
-        <JFXTextField fx:id="txtID" labelFloat="true" layoutX="10.0" layoutY="102.0" prefHeight="30.0" prefWidth="191.0" promptText="ID" />
+        <JFXTextField fx:id="txtCustomerSearch" labelFloat="true" layoutX="294.0" layoutY="77.0" onAction="#txtCustomerSearchOnAction" onKeyReleased="#txtCustomerSearchOnKeyRelesed" prefHeight="25.0" prefWidth="333.0" promptText="Search" />
+        <JFXButton fx:id="btnSearch" layoutX="654.0" layoutY="77.0" prefHeight="25.0" prefWidth="64.0" style="-fx-border-color: black; -fx-border-insets: 0.5; -fx-background-color: transparent;" text="Search" />
+        <JFXTextField fx:id="txtID" labelFloat="true" layoutX="10.0" layoutY="102.0" prefHeight="30.0" prefWidth="148.0" promptText="ID" />
         <JFXTextField fx:id="txtFirstName" labelFloat="true" layoutX="10.0" layoutY="158.0" prefHeight="30.0" prefWidth="191.0" promptText="First Name" />
         <JFXTextField fx:id="txtLastName" labelFloat="true" layoutX="10.0" layoutY="213.0" prefHeight="30.0" prefWidth="191.0" promptText="Last Name" />
         <JFXDatePicker fx:id="dtpDOB" layoutX="10.0" layoutY="269.0" prefHeight="30.0" prefWidth="191.0" promptText="Date of Birth(5/8/2020)" />
         <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="10.0" layoutY="323.0" prefHeight="30.0" prefWidth="191.0" promptText="Address" />
         <JFXTextField fx:id="txtEmailAddress" labelFloat="true" layoutX="10.0" layoutY="380.0" prefHeight="30.0" prefWidth="191.0" promptText="Email Address" />
-        <JFXButton fx:id="btnSave" layoutX="10.0" layoutY="578.0" prefHeight="50.0" prefWidth="191.0" text="Save" />
+        <JFXButton fx:id="btnSave" layoutX="10.0" layoutY="544.0" onAction="#btnSaveOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Save" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="170.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" x="1.0" y="2.0">
+         <image>
+            <Image url="@../assets/icons8-delete-bin-48.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnDeleteCustomer" disable="true" layoutX="169.0" layoutY="100.0" onAction="#btnDeleteCustomerOnAction" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: black; -fx-border-insets: 0.5; -fx-background-color: transparent;" text="  " />
+      <JFXButton fx:id="btnCancel" layoutX="10.0" layoutY="602.0" onAction="#btnCancelOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-border-color: black; -fx-border-insets: 0.5; -fx-background-color: transparent;" text="Cancel" />
     </children>
 </AnchorPane>

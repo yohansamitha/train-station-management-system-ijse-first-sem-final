@@ -1,8 +1,10 @@
 package dao.custom.impl;
 
+import dao.CrudUtil;
 import dao.custom.RouteDAO;
 import entity.route;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -40,5 +42,16 @@ public class RouteDAOImpl implements RouteDAO {
     public ArrayList<route> getAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM route";
         return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllRouteID() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT route_ID FROM route";
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        ArrayList<String> iDS = new ArrayList<>();
+        while (resultSet.next()){
+            iDS.add(resultSet.getString(1));
+        }
+        return iDS;
     }
 }

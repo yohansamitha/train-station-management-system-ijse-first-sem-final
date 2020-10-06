@@ -78,6 +78,8 @@ assistant_driver_ID VARCHAR(10) NOT NULL,
 route_ID VARCHAR (10) NOT NULL,
 date DATE NOT NULL,
 time TIME  NOT NULL,
+arrival VARCHAR (10) NOT NULL,
+departure VARCHAR (10) NOT NULL,
 FOREIGN KEY (engine_number) REFERENCES Train(engine_number),
 FOREIGN KEY (primary_driver_ID) REFERENCES primary_driver(primary_driver_ID),
 FOREIGN KEY (assistant_driver_ID) REFERENCES assistant_driver(assistant_driver_ID),
@@ -203,7 +205,7 @@ INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count,
 INSERT INTO ticket_prices(ticket_price_ID, station_ID, route_ID, 1st_class_seat_price, 2st_class_seat_price, 3st_class_seat_price) VALUES
 ("T001","S001","R001",100,80,60);
 
-INSERT INTO schedule (schedule_ID, engine_number, primary_driver_ID, assistant_driver_ID, route_ID, date, time) VALUES
+INSERT INTO schedule (schedule_ID, engine_number, primary_driver_ID, assistant_driver_ID, route_ID, "date", "time") VALUES
 ('S001', 'Eng1020', 'P001', 'A001', 'R001', '2020-10-01', '05:00:00');
 
 INSERT INTO booking(booking_ID, schedule_ID, customer_ID, ticket_price_ID, cashier_ID) VALUES (?,?,?,?,?);
@@ -215,6 +217,9 @@ INSERT INTO payment(payment_ID, booking_ID, paid_price,payment_method) VALUES (?
 select cashier_ID,first_name,last_name,DOB,address,email_address,reg_date,position from cashier union
 select primary_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from primary_driver union
 select assistant_driver_ID,first_name,last_name,DOB,address,email_address,reg_date,position from assistant_driver;
+
+
+
 
 -- select * from member where memberID like '"+txtSearch.getText()+"%' or"
 --                 + " name like '"+txtSearch.getText()+"%' or "
@@ -270,6 +275,62 @@ inner join schedule on
 booking.schedule_id = schedule.schedule_id inner join seat_detail on
 schedule.engine_number = seat_detail.engine_number
 where schedule.schedule_id = 'S001' AND booking_Details.reserved_class ='CLS001';
+
+
+
+
+
+
+
+
+
+
+
+
+String sql =
+select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
+on schedule.engine_number = train.engine_number where schedule_ID like '' '%' or engine_number like ? '%' or route_ID like ? '%' order  by schedule_ID desc;
+
+-- where customer_ID
+
+select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
+on schedule.engine_number = train.engine_number where schedule_ID like '' '%' or schedule.engine_number like '' '%' or route_ID like '' '%' order  by schedule_ID desc;
+
+
+SELECT train.engine_number, train_name, engine_type, fuel_capacity, station_ID, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count FROM train
+INNER JOIN seat_detail  ON train.engine_number = seat_detail.engine_number;
+
+
+SELECT train.engine_number, train_name, engine_type, fuel_capacity, station_ID, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count FROM train
+INNER JOIN seat_detail  ON train.engine_number = seat_detail.engine_number where train.engine_number like '' '%' or train_name like '' '%';
+
+
+select schedule.schedule_ID, sum(reserved_seat_count) from booking
+inner join booking_details on booking.booking_ID = booking_details.booking_ID
+inner join schedule on booking.schedule_ID = schedule.schedule_ID group by booking.schedule_ID;
+
+
+-- important one for remaining seats
+select schedule.schedule_ID, sum(reserved_seat_count) from booking
+inner join booking_details on booking.booking_ID = booking_details.booking_ID
+inner join schedule on booking.schedule_ID = schedule.schedule_ID WHERE booking.schedule_ID = "S001" AND booking_Details.reserved_class = "CLS001";
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

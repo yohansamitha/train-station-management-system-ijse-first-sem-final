@@ -6,11 +6,11 @@ public class customer {
     private String customer_ID;
     private String first_name;
     private String last_name;
-    private Date DOB;
+    private String DOB;
     private String address;
     private String email_address;
 
-    public customer(String customer_ID, String first_name, String last_name, Date DOB, String address, String email_address) {
+    public customer(String customer_ID, String first_name, String last_name, String DOB, String address, String email_address) {
         this.customer_ID = customer_ID;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -43,11 +43,11 @@ public class customer {
         this.last_name = last_name;
     }
 
-    public Date getDOB() {
+    public String getDOB() {
         return DOB;
     }
 
-    public void setDOB(Date DOB) {
+    public void setDOB(String DOB) {
         this.DOB = DOB;
     }
 

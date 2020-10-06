@@ -20,7 +20,7 @@
       <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="50.0" layoutY="266.0" prefHeight="30.0" prefWidth="250.0" promptText="Address" />
       <JFXTextField fx:id="txtEmailAddress" labelFloat="true" layoutX="50.0" layoutY="323.0" prefHeight="30.0" prefWidth="250.0" promptText="Email Address" />
       <JFXDatePicker fx:id="dtpDOB" layoutX="50.0" layoutY="212.0" prefHeight="30.0" prefWidth="250.0" promptText="Date of Birth(5/8/2020)" />
-      <JFXButton layoutX="74.0" layoutY="374.0" prefHeight="45.0" prefWidth="55.0" text="Save" />
-      <JFXButton fx:id="btnCancel" layoutX="222.0" layoutY="374.0" onAction="#btnCancelOnAction" prefHeight="45.0" prefWidth="55.0" text="Cancel" />
+      <JFXButton fx:id="btnSave" layoutX="74.0" layoutY="374.0" onAction="#btnSaveOnAction" prefHeight="45.0" prefWidth="86.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Save" />
+      <JFXButton fx:id="btnCancel" layoutX="191.0" layoutY="374.0" onAction="#btnCancelOnAction" prefHeight="45.0" prefWidth="86.0" style="-fx-border-color: black; -fx-border-insets: 0.5;" text="Cancel" />
    </children>
 </AnchorPane>

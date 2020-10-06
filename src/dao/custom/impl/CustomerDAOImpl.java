@@ -11,8 +11,16 @@ import java.util.ArrayList;
 public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean add(customer customer) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO customer VALUES(?,?,?,?,?,?)";
-        return false;
+        String sql = "INSERT INTO customer (customer_ID, first_name, last_name, DOB, address, email_address) " +
+                "VALUES(?,?,?,?,?,?)";
+        return CrudUtil.executeUpdate(sql,
+                customer.getCustomer_ID(),
+                customer.getFirst_name(),
+                customer.getLast_name(),
+                customer.getDOB(),
+                customer.getAddress(),
+                customer.getEmail_address()
+                );
     }
 
     @Override
@@ -43,7 +51,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getDate(4),
+                    resultSet.getString(4),
                     resultSet.getString(5),
                     resultSet.getString(6)
                     );
@@ -54,7 +62,19 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public ArrayList<customer> getAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer";
-        return null;
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        ArrayList<customer> allCustomer = new ArrayList<>();
+        while (resultSet.next()){
+            allCustomer.add(new customer(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6)
+            ));
+        }
+        return allCustomer;
     }
 
     @Override
@@ -66,5 +86,33 @@ public class CustomerDAOImpl implements CustomerDAO {
             allCustomerID.add(resultSet.getString(1)+" "+resultSet.getString(2));
         }
         return allCustomerID;
+    }
+
+    @Override
+    public int getRowCount() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT COUNT(customer_ID) FROM customer";
+        ResultSet resultSet = CrudUtil.executeQuery(sql);
+        if (resultSet.next()){
+            return resultSet.getInt(1);
+        }
+        return -1;
+    }
+
+    @Override
+    public ArrayList<customer> liveSearch(String id) throws SQLException, ClassNotFoundException {
+        String sql="select * from customer where customer_ID like ? '%' or first_name like ? '%' or last_name like ? '%'";
+        ResultSet resultSet = CrudUtil.executeQuery(sql, id, id, id);
+        ArrayList<customer> allCustomer = new ArrayList<>();
+        while (resultSet.next()){
+            allCustomer.add(new customer(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6)
+            ));
+        }
+        return allCustomer;
     }
 }
