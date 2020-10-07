@@ -1,6 +1,8 @@
 package entity;
 
-public class booking_details {
+import dao.SuperDAO;
+
+public class booking_details  {
     private String booking_Details_ID ;
     private String booking_ID ;
     private String reserved_class ;

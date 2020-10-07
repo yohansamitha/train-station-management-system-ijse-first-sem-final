@@ -1,9 +1,10 @@
 package dao;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface CrudDAO<T,ID> extends SuperDAO {
+public interface CrudDAO<T,ID extends Serializable> extends SuperDAO {
     boolean add(T t) throws SQLException,ClassNotFoundException;
     boolean delete(ID id) throws SQLException,ClassNotFoundException;
     boolean update(T t) throws SQLException,ClassNotFoundException;

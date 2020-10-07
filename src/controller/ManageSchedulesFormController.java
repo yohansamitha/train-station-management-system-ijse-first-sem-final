@@ -2,8 +2,10 @@ package controller;
 
 import bo.BOFactory;
 import bo.custom.ManageScheduleBO;
+import bo.custom.TrainScheduleBO;
 import com.jfoenix.controls.*;
 import dto.ScheduleDTO;
+import entity.customEntity;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -11,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -38,18 +42,40 @@ public class ManageSchedulesFormController implements Initializable {
     public JFXComboBox<String> cblFilterMood;
     public JFXTextField txtScheduleSearch;
     public JFXTextField txtScheduleID;
-    public JFXButton btnSearchOnAction;
     public JFXButton btnSave;
+    public JFXButton btnSearch;
+    public JFXButton btnDeleteSchedule;
     ManageScheduleBO manageScheduleBO = (ManageScheduleBO) BOFactory.getInstance().getBO(BOFactory.BoType.ManageScheduleBOImpl);
+    TrainScheduleBO trainScheduleBO = (TrainScheduleBO) BOFactory.getInstance().getBO(BOFactory.BoType.TrainScheduleBOImpl);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            clmScheduleID.setCellValueFactory(new PropertyValueFactory<>("schedule_ID"));
+            clmEngineNumber.setCellValueFactory(new PropertyValueFactory<>("engine_number"));
+            clmEngineName.setCellValueFactory(new PropertyValueFactory<>("engine_name"));
+            clmPrimaryDriver.setCellValueFactory(new PropertyValueFactory<>("primary_driver_ID"));
+            clmAssistantDriver.setCellValueFactory(new PropertyValueFactory<>("assistant_driver_ID"));
+            clmRouteID.setCellValueFactory(new PropertyValueFactory<>("route_ID"));
+            clmDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+            clmTime.setCellValueFactory(new PropertyValueFactory<>("time"));
             LoadEngineNumber();
             loadPrimaryDriver();
             loadAssistantDriver();
             loadRoute();
             getNewScheduleID();
+            loadAllSchedules(txtScheduleSearch.getText());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } catch (ClassNotFoundException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void loadAllSchedules(String text) {
+        try {
+            ArrayList<customEntity> allSchedule = trainScheduleBO.getAllSchedule(text);
+            tblSchedule.setItems(FXCollections.observableArrayList(allSchedule));
         } catch (SQLException exception) {
             exception.printStackTrace();
         } catch (ClassNotFoundException exception) {
@@ -85,7 +111,8 @@ public class ManageSchedulesFormController implements Initializable {
 
     private void loadRoute() throws SQLException, ClassNotFoundException {
         ArrayList<String> allRoute = manageScheduleBO.getAllRoute();
-        cblSelectRoute.setItems(FXCollections.observableArrayList(allRoute));;
+        cblSelectRoute.setItems(FXCollections.observableArrayList(allRoute));
+        ;
     }
 
 
@@ -134,5 +161,13 @@ public class ManageSchedulesFormController implements Initializable {
 
     public void btnDeleteScheduleOnAction(ActionEvent actionEvent) {
 
+    }
+
+    public void txtScheduleSearchOnKeyReleased(KeyEvent keyEvent) {
+        loadAllSchedules(txtScheduleSearch.getText());
+    }
+
+    public void btnSearchOnAction(ActionEvent actionEvent) {
+        loadAllSchedules(txtScheduleSearch.getText());
     }
 }

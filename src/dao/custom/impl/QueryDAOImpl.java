@@ -94,7 +94,7 @@ public class QueryDAOImpl implements QueryDAO {
                 "INNER JOIN seat_detail  ON train.engine_number = seat_detail.engine_number where train.engine_number like ? '%' or train_name like ? '%';";
 //                "INNER JOIN seat_detail  ON train.engine_number = seat_detail.engine_number;";
         ArrayList<customEntity> allTrain = new ArrayList<>();
-        System.out.println(value+" value from get all train");
+        System.out.println(value + " value from get all train");
         ResultSet resultSet = CrudUtil.executeQuery(sql, value, value);
 //        ResultSet resultSet = CrudUtil.executeQuery(sql);
         while (resultSet.next()) {
@@ -110,5 +110,18 @@ public class QueryDAOImpl implements QueryDAO {
             ));
         }
         return allTrain;
+    }
+
+    @Override
+    public ArrayList<customEntity> getBookedSeatCount(String schedule_id) throws SQLException, ClassNotFoundException {
+        String sql = "select schedule.engine_number , sum(reserved_seat_count)  from booking " +
+                "inner join booking_details on booking.booking_ID = booking_details.booking_ID " +
+                "inner join schedule on booking.schedule_ID = schedule.schedule_ID WHERE booking.schedule_ID = ? group by booking_Details.reserved_class;";
+        ResultSet resultSet = CrudUtil.executeQuery(sql, schedule_id);
+        ArrayList<customEntity> seatCount = new ArrayList<>();
+        while (resultSet.next()){
+            seatCount.add(new customEntity(resultSet.getString(1),resultSet.getInt(2)));
+        }
+        return seatCount;
     }
 }

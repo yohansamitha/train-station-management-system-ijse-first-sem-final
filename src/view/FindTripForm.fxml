@@ -97,16 +97,22 @@
       <JFXTextField fx:id="txt1ClassSeatCount" editable="false" layoutX="832.0" layoutY="365.0" prefHeight="10.0" prefWidth="65.0" />
       <JFXTextField fx:id="txt2ClassSeatCount" editable="false" layoutX="909.0" layoutY="365.0" prefHeight="10.0" prefWidth="65.0" />
       <JFXTextField fx:id="txt3ClassSeatCount" editable="false" layoutX="984.0" layoutY="365.0" prefHeight="10.0" prefWidth="65.0" />
-      <Label layoutX="773.0" layoutY="508.0" prefHeight="27.0" text="Total : " textFill="#d71f12">
+      <Label layoutX="741.0" layoutY="508.0" prefHeight="27.0" text="Total : " textFill="#d71f12">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtTotal" layoutX="833.0" layoutY="508.0" prefHeight="10.0" prefWidth="65.0" />
+      <JFXTextField fx:id="txtTotal" layoutX="801.0" layoutY="508.0" prefHeight="10.0" prefWidth="65.0" />
       <JFXRadioButton fx:id="rdbCard" layoutX="998.0" layoutY="512.0" onAction="#rdbCardOnAction" text="Card" />
       <JFXRadioButton fx:id="rdbCash" layoutX="925.0" layoutY="513.0" onAction="#rdbCashOnAction" selected="true" text="Cash" />
       <JFXTextField fx:id="txtCustomerName" editable="false" labelFloat="true" layoutX="10.0" layoutY="155.0" prefHeight="30.0" prefWidth="191.0" promptText="Customer Name" />
       <JFXTextField fx:id="txtCustomerAddress" editable="false" labelFloat="true" layoutX="10.0" layoutY="209.0" prefHeight="30.0" prefWidth="191.0" promptText="Customer Address" />
       <JFXButton fx:id="btnScheduleSearch" buttonType="RAISED" layoutX="10.0" layoutY="369.0" onAction="#btnSearchScheduleOnAction" prefHeight="45.0" prefWidth="191.0" style="-fx-border-insets: 0.5; -fx-border-color: black;" text="Search Schedule" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="878.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true" x="1.0" y="2.0">
+         <image>
+            <Image url="@../assets/icons8-refresh-48.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnTotal" layoutX="877.0" layoutY="503.0" onAction="#btnTotalOnAction" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: black; -fx-border-insets: 0.5; -fx-background-color: transparent;" text="  " />
    </children>
 </AnchorPane>

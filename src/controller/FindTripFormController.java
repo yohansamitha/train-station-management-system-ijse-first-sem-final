@@ -70,6 +70,7 @@ public class FindTripFormController implements Initializable {
     public JFXTextField txtCustomerAddress;
     public JFXButton btnScheduleSearch;
     public Label lblFindTrip;
+    public JFXButton btnTotal;
     FindTripBO findTripBO = (FindTripBO) BOFactory.getInstance().getBO(BOFactory.BoType.FindTripBOImpl);
     ArrayList<String> allStationNames = new ArrayList<>();
     private String scheduleID;
@@ -101,33 +102,31 @@ public class FindTripFormController implements Initializable {
         clm1rdClass.setCellValueFactory(new PropertyValueFactory<>("st_class_seat_price1"));
         clm2rdClass.setCellValueFactory(new PropertyValueFactory<>("st_class_seat_price2"));
         clm3rdClass.setCellValueFactory(new PropertyValueFactory<>("st_class_seat_price3"));
-        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
-        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
-        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
         loadAllCustomer();
         loadAllStations();
+//        loadSpiners();
         stateChanged();
-//        spn1Class.getEditor().getTextF
-//        spn1Class.getEditor().addEventFilter();
+    }
+
+    private void loadSpiners(String schedule_id, String engine_number) throws SQLException, ClassNotFoundException {
+        int[] remainingSeatCount = findTripBO.getRemainingSeatCount(schedule_id,engine_number);
+        int spn1MaxValue = remainingSeatCount[0];
+        int spn2MaxValue = remainingSeatCount[1];
+        int spn3MaxValue = remainingSeatCount[2];
+        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, spn1MaxValue, 0, 1));
+        txt1ClassSeatCount.setText(String.valueOf(remainingSeatCount[0]));
+        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, spn2MaxValue, 0, 1));
+        txt2ClassSeatCount.setText(String.valueOf(remainingSeatCount[1]));
+        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, spn3MaxValue, 0, 1));
+        txt3ClassSeatCount.setText(String.valueOf(remainingSeatCount[2]));
+
     }
 
     public void stateChanged() {
-//        SpinnerModel dateModel = (SpinnerModel) spn1Class.getEditor();
-//        dateModel.addChangeListener(new ChangeListener() {
-//            @Override
-//            public void stateChanged(ChangeEvent e) {
-//                System.out.println("working");
-//            }
-//        });
         spn1Class.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("working");
+
         });
-//        dateModel.addChangeListener(new ChangeListener() {
-//            @Override
-//            public void stateChanged(ChangeEvent e) {
-//                System.out.println("working");
-//            }
-//        });
     }
 
     private void loadAllStations() {
@@ -163,6 +162,7 @@ public class FindTripFormController implements Initializable {
 
     public void btnPlaceBookingOnAction(ActionEvent actionEvent) {
         try {
+            getTotal();
             System.out.println(spn1Class.getValue() + " spinner value 1");
             String paymentMethod = "Cash";
             System.out.println("place booking on start");
@@ -194,8 +194,9 @@ public class FindTripFormController implements Initializable {
                 alert.setContentText("Booking Placed SuccessFully!");
                 Optional<ButtonType> res = alert.showAndWait();
                 if (res.isPresent()) {
-                    if (res.get().equals(ButtonType.CANCEL)) {
+                    if (res.get().equals(ButtonType.OK)) {
                         cleanAll();
+
                     }
                 }
             }
@@ -218,12 +219,15 @@ public class FindTripFormController implements Initializable {
         tblTicketPrice.setItems(FXCollections.observableArrayList());
         lblFindTrip.requestFocus();
         txtTotal.setText("");
-        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,0,0));
-        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,30,0));
-        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,0,0));
-        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,30,0));
-        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,0,0));
-        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,30,0));
+        txt1ClassSeatCount.setText(null);
+        txt2ClassSeatCount.setText(null);
+        txt3ClassSeatCount.setText(null);
+        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        spn1Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0, 0));
+        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        spn2Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0, 0));
+        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
+        spn3Class.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0, 0));
     }
 
     public void btnCancelOnAction(ActionEvent actionEvent) {
@@ -254,18 +258,28 @@ public class FindTripFormController implements Initializable {
 
 
     public void btnSearchCustomerOnAction(ActionEvent actionEvent) {
-        try {
-            String value = cmbCustomerSearch.getValue() + "";
-            System.out.println(value);
-            String[] a = value.split("\\s+");
-            System.out.println(a[0] + " splited");
-            CustomerDTO customerDTO = findTripBO.getCustomerDetails(a[0]);
-            txtCustomerName.setText(customerDTO.getFirst_name());
-            txtCustomerAddress.setText(customerDTO.getAddress());
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        } catch (ClassNotFoundException exception) {
-            exception.printStackTrace();
+        if (cmbCustomerSearch.getValue().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please insert or select customer!");
+            alert.showAndWait();
+        } else {
+            try {
+                String value = cmbCustomerSearch.getValue() + "";
+                System.out.println(value);
+                String[] a = value.split("\\s+");
+                System.out.println(a[0] + " splited");
+                CustomerDTO customerDTO = findTripBO.getCustomerDetails(a[0]);
+                txtCustomerName.setText(customerDTO.getFirst_name());
+                txtCustomerAddress.setText(customerDTO.getAddress());
+            } catch (NullPointerException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Wrong Customer Details!");
+                alert.showAndWait();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            } catch (ClassNotFoundException exception) {
+                exception.printStackTrace();
+            }
         }
     }
 
@@ -296,34 +310,71 @@ public class FindTripFormController implements Initializable {
     }
 
     private void scheduleSearch() {
-        try {
-            String date = String.valueOf(dtpTripDate.getValue());
-            String station = txtStationSearch.getText();
-            String[] routeID = station.split("\\s+");
-            ArrayList<customEntity> schedule = findTripBO.findSchedule(date, routeID[0]);
-            tblSchedule.setItems(FXCollections.observableArrayList(schedule));
-            System.out.println(schedule.toString());
+        if (txtStationSearch.getText().isEmpty() | dtpTripDate.getValue() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please fill date and station!");
+            alert.showAndWait();
+        } else {
+            try {
+                String date = String.valueOf(dtpTripDate.getValue());
+                String station = txtStationSearch.getText();
+                String[] routeID = station.split("\\s+");
+                ArrayList<customEntity> schedule = findTripBO.findSchedule(date, routeID[0]);
+                tblSchedule.setItems(FXCollections.observableArrayList(schedule));
+                System.out.println(schedule.toString());
 
+            } catch (NullPointerException e) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Please Check Your Entered Details!");
+                alert.showAndWait();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            } catch (ClassNotFoundException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    public void tblScheduleOnMouseReleased(MouseEvent mouseEvent) {
+        try {
+            customEntity selectedItem = tblSchedule.getSelectionModel().getSelectedItem();
+//        loading schedule od to class field
+            scheduleID = selectedItem.getSchedule_ID();
+            System.out.println(selectedItem + "schedule table mouse release on Action");
+            String stationAndRouteID = txtStationSearch.getText();
+            String[] routeID = stationAndRouteID.split("\\s+");
+            getTicketPrice();
+            loadSpiners(selectedItem.getSchedule_ID(),selectedItem.getEngine_number());
         } catch (SQLException exception) {
             exception.printStackTrace();
         } catch (ClassNotFoundException exception) {
             exception.printStackTrace();
         }
-    }
-
-    public void tblScheduleOnMouseReleased(MouseEvent mouseEvent) {
-        customEntity selectedItem = tblSchedule.getSelectionModel().getSelectedItem();
-//        loading schedule od to class field
-        scheduleID = selectedItem.getSchedule_ID();
-        System.out.println(selectedItem + "schedule table mouse release on Action");
-        String stationAndRouteID = txtStationSearch.getText();
-        String[] routeID = stationAndRouteID.split("\\s+");
-        getTicketPrice();
-
 
     }
 
     public void setCashierID(String cashier_id) {
         this.cashier_ID = cashier_id;
+    }
+
+    public void btnTotalOnAction(ActionEvent actionEvent) {
+        getTotal();
+    }
+
+    private void getTotal() {
+        int total = 0;
+        if (!spn1Class.getValue().equals(0)) {
+            System.out.println("spn 1 total");
+            total += st_class_seat_price1 * spn1Class.getValue();
+        }
+        if (!spn2Class.getValue().equals(0)) {
+            System.out.println("spn 2 total");
+            total += st_class_seat_price2 * spn2Class.getValue();
+        }
+        if (!spn3Class.getValue().equals(0)) {
+            System.out.println("spn 3 total");
+            total += st_class_seat_price3 * spn3Class.getValue();
+        }
+        txtTotal.setText(String.valueOf(total));
     }
 }

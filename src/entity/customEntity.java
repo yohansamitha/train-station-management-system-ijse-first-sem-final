@@ -29,6 +29,12 @@ public class customEntity {
     private int clas_seat_count1;
     private int clas_seat_count2;
     private int clas_seat_count3;
+    private int seatCount;
+
+    public customEntity(String engine_number, int seatCount) {
+        this.engine_number = engine_number;
+        this.seatCount = seatCount;
+    }
 
     public customEntity(String engine_number, String train_name, String engine_type, int fuel_capacity, String station_ID, int clas_seat_count1, int clas_seat_count2, int clas_seat_count3) {
         this.engine_number = engine_number;
@@ -61,6 +67,14 @@ public class customEntity {
         this.email_address = email_address;
         this.reg_date = reg_date;
         this.position = position;
+    }
+
+    public int getSeatCount() {
+        return seatCount;
+    }
+
+    public void setSeatCount(int seatCount) {
+        this.seatCount = seatCount;
     }
 
     public String getTrain_name() {

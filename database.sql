@@ -199,8 +199,9 @@ INSERT INTO station(station_ID, route_ID, station_name, distance, duration) VALU
 INSERT INTO train(engine_number, train_name, engine_type, fuel_capacity, station_ID) VALUES
 ("Eng1020","mallika","Express",100,"S002");
 
-INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count) VALUES
-("Eng1020",30,40,50);
+INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count) VALUES ("Eng1020",30,40,50);
+INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count) VALUES ("Eng002",40,50,60);
+INSERT INTO seat_detail(engine_number, 1st_clas_seat_count, 2st_clas_seat_count, 3st_clas_seat_count) VALUES ("Eng003",40,60,70);
 
 INSERT INTO ticket_prices(ticket_price_ID, station_ID, route_ID, 1st_class_seat_price, 2st_class_seat_price, 3st_class_seat_price) VALUES
 ("T001","S001","R001",100,80,60);
@@ -286,7 +287,6 @@ where schedule.schedule_id = 'S001' AND booking_Details.reserved_class ='CLS001'
 
 
 
-
 String sql =
 select schedule_ID, schedule.engine_number, train_name, primary_driver_ID, assistant_driver_ID, route_ID, date, time from schedule inner join train
 on schedule.engine_number = train.engine_number where schedule_ID like '' '%' or engine_number like ? '%' or route_ID like ? '%' order  by schedule_ID desc;
@@ -317,10 +317,24 @@ inner join schedule on booking.schedule_ID = schedule.schedule_ID WHERE booking.
 -----------------------------------------------------------------------------------------------------------------------
 
 
+select schedule.schedule_ID, schedule.engine_number ,booking_Details.reserved_class, sum(reserved_seat_count)  from booking
+inner join booking_details on booking.booking_ID = booking_details.booking_ID
+inner join schedule on booking.schedule_ID = schedule.schedule_ID WHERE booking.schedule_ID = "S002" group by booking_Details.reserved_class;
+
+
+select schedule.engine_number , sum(reserved_seat_count)  from booking
+inner join booking_details on booking.booking_ID = booking_details.booking_ID
+inner join schedule on booking.schedule_ID = schedule.schedule_ID WHERE booking.schedule_ID = ? group by booking_Details.reserved_class;
 
 
 
+INSERT INTO booking(booking_ID, schedule_ID, customer_ID, ticket_price_ID, cashier_ID) VALUES ("E006","S003","C005","T001","E001");
 
+INSERT INTO booking_Details(booking_Details_ID, booking_ID, reserved_class, reserved_seat_count, reserved_seat_price) VALUES ("BD016","E006","CLS001",1,100);
+INSERT INTO booking_Details(booking_Details_ID, booking_ID, reserved_class, reserved_seat_count, reserved_seat_price) VALUES ("BD017","E006","CLS002",1,80);
+INSERT INTO booking_Details(booking_Details_ID, booking_ID, reserved_class, reserved_seat_count, reserved_seat_price) VALUES ("BD018","E006","CLS003",1,60);
+
+INSERT INTO payment(payment_ID, booking_ID, paid_price,payment_method) VALUES ("P006","E006",100,"Cash");
 
 
 

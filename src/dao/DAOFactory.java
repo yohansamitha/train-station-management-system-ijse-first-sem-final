@@ -42,6 +42,8 @@ public class DAOFactory {
                 return new TrainDAOImpl();
             case RouteDAOImpl:
                 return new RouteDAOImpl();
+            case Seat_detailsDAOImpl:
+                return new Seat_detailsDAOImpl();
             default:
                 return null;
         }
@@ -62,6 +64,7 @@ public class DAOFactory {
         ScheduleDAOImpl,
         TrainDAOImpl,
         RouteDAOImpl,
+        Seat_detailsDAOImpl,
 
     }
 }

@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface FindTripBO extends SuperBO {
+    int[] getRemainingSeatCount(String schedule_id, String engine_number) throws SQLException, ClassNotFoundException;
+
     ArrayList<String> getAllCustomerName() throws SQLException,ClassNotFoundException;
 
     ArrayList<StationDTO> getAllStation() throws SQLException,ClassNotFoundException;

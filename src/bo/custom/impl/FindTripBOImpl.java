@@ -20,6 +20,35 @@ public class FindTripBOImpl implements FindTripBO {
     BookingDAO bookingDAO = (BookingDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.BookingDAOImpl);
     Booking_detailsDAOImpl booking_detailsDAO = (Booking_detailsDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.Booking_detailsDAOImpl);
     PaymentDAO paymentDAO = (PaymentDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.PaymentDAOImpl);
+    Seat_detailsDAO seat_detailsDAO = (Seat_detailsDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.Seat_detailsDAOImpl);
+
+    @Override
+    public int[] getRemainingSeatCount(String schedule_id, String engine_number) throws SQLException, ClassNotFoundException {
+        try {
+
+            ArrayList<customEntity> bookedSeatCount = queryDAO.getBookedSeatCount(schedule_id);
+            System.out.println(bookedSeatCount.get(0).getEngine_number() + "  " + bookedSeatCount.get(0).getSeatCount() + " remaing seat count");
+            seat_detail search = seat_detailsDAO.search(bookedSeatCount.get(0).getEngine_number());
+            int[] remainingSeatCount = new int[3];
+            int class1SeatRem = search.getClas_seat_count1() - bookedSeatCount.get(0).getSeatCount();
+            int class2SeatRem = search.getClas_seat_count2() - bookedSeatCount.get(1).getSeatCount();
+            int class3SeatRem = search.getClas_seat_count3() - bookedSeatCount.get(2).getSeatCount();
+            System.out.println(class1SeatRem + " 1 class remaining seat count");
+            System.out.println(class2SeatRem + " 2 class remaining seat count");
+            System.out.println(class3SeatRem + " 3 class remaining seat count");
+            remainingSeatCount[0] = class1SeatRem;
+            remainingSeatCount[1] = class2SeatRem;
+            remainingSeatCount[2] = class3SeatRem;
+            return remainingSeatCount;
+        } catch (IndexOutOfBoundsException e) {
+            seat_detail search = seat_detailsDAO.search(engine_number);
+            int[] remainingSeatCount = new int[3];
+            remainingSeatCount[0] = search.getClas_seat_count1();
+            remainingSeatCount[1] = search.getClas_seat_count2();
+            remainingSeatCount[2] = search.getClas_seat_count3();
+            return remainingSeatCount;
+        }
+    }
 
     @Override
     public ArrayList<String> getAllCustomerName() throws SQLException, ClassNotFoundException {
@@ -104,7 +133,7 @@ public class FindTripBOImpl implements FindTripBO {
                 connection.rollback();
                 return false;
             }
-        }finally {
+        } finally {
             connection.setAutoCommit(true);
         }
         return false;
