@@ -5,7 +5,7 @@ import dao.custom.impl.*;
 public class DAOFactory {
     static DAOFactory daoFactory;
 
-    public DAOFactory() {
+    private DAOFactory() {
     }
 
     public static DAOFactory getInstance() {
