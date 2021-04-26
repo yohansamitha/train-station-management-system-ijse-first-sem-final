@@ -71,4 +71,9 @@ public class ManageCustomerBOImpl implements ManageCustomerBO {
         return customerDTOS;
     }
 
+    @Override
+    public boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
+        return customerDAO.delete(id);
+    }
+
 }

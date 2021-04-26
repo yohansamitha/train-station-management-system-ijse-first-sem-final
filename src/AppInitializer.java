@@ -56,6 +56,7 @@ public class AppInitializer extends Application {
             if (res.get().equals(ButtonType.CANCEL)) {
                 event.consume();
             }else {
+                System.out.println("Window closed..");
                 new FadeOut(root).play();
             }
         }

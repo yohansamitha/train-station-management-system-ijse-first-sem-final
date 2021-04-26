@@ -18,9 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -73,7 +70,25 @@ public class ManageCustomerFormController implements Initializable {
     }
 
     public void btnDeleteCustomerOnAction(ActionEvent actionEvent) {
+        System.out.println("customer delete button clicked");
+        try {
+            String id = txtID.getText();
+            boolean isCustomerDelete = manageCustomerBO.deleteCustomer(id);
+            if (isCustomerDelete) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Customer Delete SuccessFully!");
+                cleanAll();
+                setNewCustomerID();
+                loadAllCustomer();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Something went Wrong!");
+                alert.showAndWait();
 
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void tblCustomerOnMouseReleased(MouseEvent mouseEvent) {
@@ -84,6 +99,7 @@ public class ManageCustomerFormController implements Initializable {
         dtpDOB.setValue(LocalDate.parse(selectedItem.getDOB()));
         txtAddress.setText(selectedItem.getAddress());
         txtEmailAddress.setText(selectedItem.getEmail_address());
+        btnDeleteCustomer.setDisable(false);
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
